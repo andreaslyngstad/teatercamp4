@@ -2,7 +2,7 @@
 lock "~> 3.16.0"
 
 set :application, 'teatercamp'
-set :repo_url, 'git@github.com:andreaslyngstad/Teatercamp3.git'
+set :repo_url, 'git@github.com:andreaslyngstad/Teatercamp4.git'
 set :deploy_to, "/var/www/vhosts/teatercamp.no/httpdocs/"
 set :bundle_path, '/var/www/vhosts/teatercamp.no/httpdocs/gems'
 set :rbenv_path, "/usr"
