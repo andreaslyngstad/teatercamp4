@@ -1,0 +1,15 @@
+<% @page_title = "Nyheter"%>
+<%= render "nav" %>
+<div id="section5">
+	<div class="left_camps blogg_bk">
+		<ul>
+			<% @posts_til_liste.each do |post| %>
+				<li>
+					<h1><%= post.title %></h1>
+					<p><%= post.created_at.strftime('%d.%m.%Y') %></p>
+					<p><%= post.content %></p>
+				</li>
+			<% end %>
+		</ul>
+	</div>
+</div>

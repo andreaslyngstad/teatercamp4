@@ -1,0 +1,11 @@
+<div id="fullpage">
+	<% x = 0 %>
+		<% @pages.each do |page| %>
+		<% x = x + 1 %>
+		<div class="section" id="section<%= x %>" data-anchor="<%= page.title %>">
+		 <%= raw(page.body) %>
+		</div>
+	<% end %>
+
+</div>
+</div>
