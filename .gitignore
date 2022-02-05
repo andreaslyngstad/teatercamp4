@@ -33,3 +33,10 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+config/database.yml
+log/*.log
+config/email.yml
+tmp/
+.sass-cache/
+vendor/bundle/
