@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-# gem 'tabulous', git: 'https://github.com/andreaslyngstad/tabulous.git'
+gem 'tabulous', git: 'https://github.com/andreaslyngstad/tabulous.git'
 group :development do
   gem "capistrano"
   gem 'capistrano-bundler'

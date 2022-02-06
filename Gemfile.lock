@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/andreaslyngstad/tabulous.git
+  revision: f6fe73ee6da1470588692327ff7c04d4c348be5e
+  specs:
+    tabulous (2.1.4)
+      colored (~> 1.2.0)
+      rails (>= 3.0, < 7.0.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -104,6 +112,7 @@ GEM
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
     childprocess (4.1.0)
+    colored (1.2)
     concurrent-ruby (1.1.9)
     crass (1.0.6)
     debug (1.4.0)
@@ -277,6 +286,7 @@ DEPENDENCIES
   sprockets-rails
   sqlite3 (~> 1.4)
   stimulus-rails
+  tabulous!
   turbo-rails
   tzinfo-data
   web-console
@@ -286,4 +296,4 @@ RUBY VERSION
    ruby 2.7.5p203
 
 BUNDLED WITH
-   2.3.4
+   2.3.6
