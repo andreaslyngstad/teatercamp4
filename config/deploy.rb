@@ -3,9 +3,18 @@ lock "~> 3.16.0"
 
 set :application, 'teatercamp'
 set :repo_url, 'git@github.com:andreaslyngstad/Teatercamp4.git'
+set :branch, 'main'
 set :deploy_to, "/var/www/vhosts/teatercamp.no/httpdocs/"
 set :bundle_path, '/var/www/vhosts/teatercamp.no/httpdocs/gems'
-set :rbenv_path, "/usr"
+# set :default_env, {
+#     path: '/usr/local/rbenv/plugins/ruby-build/bin:/usr/local/rbenv/shims:/usr/local/rbenv/bin:$PATH',
+#     rbenv_root: '/usr/local/rbenv'
+# }
+set :rbenv_roles, :all
+set :rbenv_ruby, '2.7.5'
+set :rbenv_ruby_dir, '/home/teatercamp/.rbenv/versions/2.7.5'
+set :rbenv_prefix, '/usr/bin/rbenv exec'
+# set :rbenv_custom_path, '/usr'
 
 set :linked_files, %w{config/database.yml config/email.yml}
 set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
@@ -14,6 +23,9 @@ set :keep_releases, 5
 set :format, :pretty
 set :log_level, :debug
 set :pty, true
+
+set :rbenv_type, :user
+# set :rbenv_ruby, "2.7.5"
 
 
 set :rails_assets_groups, :assets
