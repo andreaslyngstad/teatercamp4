@@ -16,8 +16,8 @@ set :rbenv_ruby_dir, '/home/teatercamp/.rbenv/versions/2.7.5'
 set :rbenv_prefix, '/usr/bin/rbenv exec'
 # set :rbenv_custom_path, '/usr'
 
-set :linked_files, %w{config/database.yml config/email.yml}
-set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
+set :linked_files, %w{config/database.yml config/email.yml config/master.key}
+set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets}
 set :assets_dependencies, %w(app/assets lib/assets vendor/assets Gemfile.lock config/routes.rb)
 set :keep_releases, 5
 set :format, :pretty
