@@ -2,8 +2,11 @@
 lock "~> 3.16.0"
 
 set :application, 'teatercamp'
+set :user, 'teatercamp'
 set :repo_url, 'git@github.com:andreaslyngstad/Teatercamp4.git'
 set :branch, 'main'
+
+set :deploy_via,      :remote_cache
 set :deploy_to, "/var/www/vhosts/teatercamp.no/httpdocs/"
 set :bundle_path, '/var/www/vhosts/teatercamp.no/httpdocs/gems'
 # set :default_env, {
@@ -16,8 +19,8 @@ set :rbenv_ruby_dir, '/home/teatercamp/.rbenv/versions/2.7.5'
 set :rbenv_prefix, '/usr/bin/rbenv exec'
 # set :rbenv_custom_path, '/usr'
 
-set :linked_files, %w{config/database.yml config/email.yml config/master.key}
-set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets}
+append :linked_files, 'config/database.yml', 'config/email.yml', 'config/master.key'
+append :linked_dirs, 'bin', 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'public/uploads'}
 set :assets_dependencies, %w(app/assets lib/assets vendor/assets Gemfile.lock config/routes.rb)
 set :keep_releases, 5
 set :format, :pretty
@@ -32,6 +35,25 @@ set :rails_assets_groups, :assets
 set :assets_roles, [:web, :app]
 set :keep_assets, 2
 
+
+set :puma_threads,    [4, 16]
+set :puma_workers,    0
+
+set :pty,             true
+set :use_sudo,        false
+set :stage,           :production
+set :puma_bind,       "unix://#{shared_path}/tmp/sockets/#{fetch(:application)}-puma.sock"
+set :puma_state,      "#{shared_path}/tmp/pids/puma.state"
+set :puma_pid,        "#{shared_path}/tmp/pids/puma.pid"
+set :puma_access_log, "#{release_path}/log/puma.access.log"
+set :puma_error_log,  "#{release_path}/log/puma.error.log"
+set :ssh_options,     { forward_agent: true, user: fetch(:user), keys: %w(~/.ssh/id_rsa.pub) }
+set :puma_preload_app, true
+set :puma_worker_timeout, nil
+set :puma_init_active_record, true  # Change to false when not using ActiveRecord
+
+append :linked_files, "config/master.key"
+append :linked_dirs, "log", "tmp/pids", "tmp/cache", "public/uploads"
 # namespace :deploy do
 #   namespace :assets do
 #       task :precompile, :roles => :web do
