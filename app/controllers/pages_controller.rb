@@ -4,7 +4,7 @@ class PagesController < ApplicationController
 
 
   def index
-    @pages = Page.all
+    @pages = Page.order(title: "ASC")
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @pages }

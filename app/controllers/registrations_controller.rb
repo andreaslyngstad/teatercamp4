@@ -48,13 +48,13 @@ class RegistrationsController < ApplicationController
     @pages = Page.order("lft")
     @camp = @registration.camp
     @registration.paid = false
+    @registration.active = true
     respond_to do |format|
       format.html do
 
           if @registration.save
             @invoice = Invoice.new
             @invoice.registration = @registration
-            @invoice.number = ( Invoice.last ? Invoice.last.id  + 1 : 1).to_s + "00" + (Time.now.year).to_s
             @invoice.paid = false
             @invoice.sent = false
             @invoice.save
@@ -92,8 +92,13 @@ class RegistrationsController < ApplicationController
   # DELETE /registrations/1.xml
   def destroy
     @registration = Registration.find(params[:id])
-    @registration.destroy
-
+    if @registration.invoice.number.nil?
+      @registration.invoice.destroy
+      @registration.destroy
+      flash[:notice] = 'Påmeldingen ble slettet'
+    else
+      flash[:notice] = 'Denne påmeldingen kan ikke slettes fordi den har en faktura. Sett den som inaktiv.'
+    end
     respond_to do |format|
       format.html { redirect_to(registrations_url) }
       format.xml  { head :ok }
@@ -129,7 +134,8 @@ class RegistrationsController < ApplicationController
         :billing_email,
         :tell,
         :medical,
-        :camp_id
+        :camp_id,
+        :active
        )
   end
 

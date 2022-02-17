@@ -13,6 +13,10 @@
 <%= label_tag 'Beskrivelse' %>
 <%= f.text_area :description %>
 </li>
+<li>
+<%= label_tag 'Bilde' %>
+<%= f.file_field :cover_image %>
+</li>
 
 
 <li>
@@ -37,6 +41,7 @@
 
 </li>
 <li>
+
 <%= label_tag 'Produkter' %><li>
 	<% @products.each do |product| -%>
 	<li><%= check_box_tag('camp[product_ids][]', product.id, @camp.products.map {|c| c.id }.include?(product.id), :class => "pro_check") %>
@@ -45,6 +50,14 @@
 
 
 <li>
+	<%= label_tag 'Folk' %><li>
+		<% @people.each do |person| -%>
+		<li><%= check_box_tag('camp[person_ids][]', person.id, @camp.people.map {|c| c.id }.include?(person.id), :class => "pro_check") %>
+		<%= person.name %></li>
+		<% end %>
+
+
+	<li>
 <%= label_tag 'Offentlig' %>
 <%= f.select :public,  [['Ja', true], ['Nei', false], ] %>
 </li>

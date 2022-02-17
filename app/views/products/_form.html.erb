@@ -1,4 +1,4 @@
-<ul class="form_layout">	
+<ul class="form_layout">
 <%= form_for(@product) do |f| %>
   <% if @product.errors.any? %>
     <div id="error_explanation">
@@ -19,11 +19,15 @@
     <%= f.label :Pris_ink_mva %>
     <%= f.text_field :total_price %>
 </li>
-  
+
   <li class="field">
     <%= f.label :Moms %>
     <%= f.text_field :vat %>
 </li>
+<li class="field">
+<%= f.label :aktiv, style: "display: block" %>
+<%= f.check_box :active%>
+</li>
  <li><label>&nbsp;</label><%= f.submit('Lagre',:class => 'submit') %></li>
 <% end %>
-</ul>	
+</ul>

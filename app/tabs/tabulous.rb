@@ -2,6 +2,15 @@ Tabulous.setup do
 
   tabs do
 
+    people_tab do
+      text          { 'Folk' }
+      link_path     { people_path}
+      visible_when  { true }
+      enabled_when  { true }
+      a_subtab_is_active { true }
+      active_when   { in_action('any').of_controller('people') }
+    end
+
     posts_tab do
       text          { 'Blogg' }
       link_path     { posts_path}

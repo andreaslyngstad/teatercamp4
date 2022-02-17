@@ -9,8 +9,8 @@
 		<tr>
 			<th>Bilde</th>
 			<th>Filnavn</th>
-					
-			
+
+
 			<th></th>
 			<th></th>
 		</tr>
@@ -18,20 +18,18 @@
 	<% for img in @images %>
 
 	<tr>
-	<th><%= image_tag(img.photo.url)%></th>
-	<th><%= img.photo_file_name %></th>
-	
-	<%= img.photo.url %>
-	
-<th><%= link_to 'Slett', img, :confirm => 'Er du sikker på at du vil slette dette bildet?', :method => :delete %><th>
+	<th>image</th>
+	<th>nape</th>
+
+	<th><%= "url"%></th>
+
+<th><%= link_to 'Slett', img, :confirm => 'Er du sikker på at du vil slette dette bildet?', :method => :delete %></th>
 	</tr>
 	<% end %>
-	
-	
 
-	
-	
+
+
+
+
 </table>
 </div>
-
-

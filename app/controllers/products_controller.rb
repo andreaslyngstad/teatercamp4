@@ -41,6 +41,7 @@ class ProductsController < ApplicationController
   # POST /products.xml
   def create
     @product = Product.new(product_params)
+    @product.active = true
 
     respond_to do |format|
       if @product.save
@@ -81,6 +82,6 @@ class ProductsController < ApplicationController
     end
   end
   def product_params
-    params.require(:product).permit(:description, :total_price, :vat)
+    params.require(:product).permit(:description, :total_price, :vat, :active)
   end
 end

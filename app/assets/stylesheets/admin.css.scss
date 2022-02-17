@@ -2,6 +2,8 @@
 *= require_self
 
 */
+
+//= require actiontext
 h1 a							{color:red;}
 
 #notice_notice { background:#2e2; color:#222; }
@@ -19,8 +21,8 @@ h1 a							{color:red;}
   display:none;
 }
 .send_link_wr{cursor: pointer;}
-.spinning {width:15px;height:15px;float:left; margin:5px 15px 0 15px; background: url('../images/spinner2.gif') no-repeat right !important; }
-.passed {width:15px;height:15px;float:left; margin:5px 15px 0 15px; background: url('../images/tick.jpg') no-repeat right !important; }
+.spinning {width:15px;height:15px;float:left; margin:5px 15px 0 15px; background: url('spinner2.gif') no-repeat right !important; }
+.passed {width:15px;height:15px;float:left; margin:5px 15px 0 15px; background: url('tick.jpg') no-repeat right !important; }
 .toggle{
 	display: block;
 	width: 50px;
@@ -169,7 +171,7 @@ width: 100%;
 .form_layout					{padding:20px 0px 20px 0px;}
 .form_layout li					{list-style:none;clear:both;padding-top:2px;}
 .form_layout li label			{list-style:none;width:120px;float:left;}
-.form_layout li input			{width:400px;float:left;padding:2px;border:1px solid #999;background:#fff;}
+// .form_layout li input			{width:400px;float:left;padding:2px;border:1px solid #999;background:#fff;}
 .form_layout li select			{width:135px;float:left;padding:2px;border:1px solid #999;background:#fff;}
 .form_layout li .pro_check		{width:20px;float:left;margin:0 0 0 118px;}
 .form_layout li textarea		{width:400px;float:left;padding:2px;border:1px solid #999;background:#fff;}

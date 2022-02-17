@@ -2,7 +2,7 @@ class InvoicesController < ApplicationController
   layout :resolve_layout
 
   def index
-    @invoices = Invoice.includes(:registration, :credit_note).where('made_date > ?', Time.now.prev_year(2)).order(made_date:"DESC")
+    @invoices = Invoice.includes(:registration, :credit_note).where('created_at > ?', Time.now.prev_year(2)).order(made_date:"DESC")
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @invoices }
@@ -29,15 +29,31 @@ class InvoicesController < ApplicationController
   def show_pdf
     @invoice = Invoice.find(params[:id])
     respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @invoice }
+      format.html
     end
+  end
+  def update
+    @invoice = Invoice.find(params[:id])
+     respond_to do |format|
+       if @invoice.update(invoice_params)
+
+         flash[:notice] = 'Campen ble oppdatert.'
+         format.html { redirect_to(invoice_url(@invoice)) }
+         format.xml  { head :ok }
+       else
+         flash[:notice] = 'Feil'
+         format.html { render :action => "show" }
+         format.xml  { render :xml => @post.errors, :status => :unprocessable_entity }
+       end
+     end
   end
 
   def download_pdf
 	  @invoice = Invoice.find(params[:id])
-	  html = render_to_string(template: 'invoices/show_pdf/', locals: {invoice: @invoice })
+	  html = render_to_string(template: 'invoices/show_pdf', locals: {invoice: @invoice, layout: false})
 	  pdf = PDFKit.new(html)
+    debugger
+    file = File.new(  pdf.to_pdf)
 	  send_data(pdf.to_pdf, :filename => "faktura_#{@invoice.number}.pdf", :type => 'application/pdf')
 	end
 
@@ -58,6 +74,7 @@ class InvoicesController < ApplicationController
 
   def invoice_send
     @invoice = Invoice.find(params[:id])
+    @invoice.number = ( Invoice.last ? Invoice.last.id  + 1 : 1).to_s + "00" + (Time.now.year).to_s
     if @invoice.made_date.nil?
       @invoice.made_date = Time.now
       @invoice.pay_by = Time.now + 14.days
@@ -162,7 +179,9 @@ class InvoicesController < ApplicationController
       :sent,
       :made_date,
       :pay_by,
-      :reminder_date
+      :reminder_date,
+      :discount_text,
+      :discount
     )
   end
 end

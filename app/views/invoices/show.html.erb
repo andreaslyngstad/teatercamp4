@@ -5,23 +5,43 @@
 	<tr><td>Deltager</td><td><%= @invoice.registration.name %></td></tr>
 	<tr><td>Faktura epost</td><td><%= @invoice.registration.billing_email %></td></tr>
 	<tr><td>Kurs</td><td><%= @invoice.registration.camp.name %></td></tr>
-
+	<tr><td>Sendt</td><td><%= @invoice.sent %></td></tr>
+	<tr><td>Betalt?</td><td><%= @invoice.paid %></td></tr>
+	<% if !@invoice.made_date.nil? %>
+	<tr><td>Opprettet</td><td><%= @invoice.made_date.strftime('%d.%m.%Y')%></td></tr>
+	<% end  %>
+	<tr><td></td><td></td></tr>
+	<tr><td></td><td></td></tr>
 	<tr style="font-weight: bold;"><td>Products</td><td>eks mva</td><td>mva</td><td>mva prosent</td><td>total</td></tr>
 	<% @invoice.registration.camp.products.each do |product| %>
 	<tr><td><%= product.description %></td>
-		<td style="text-align: right;"><%= number_to_currency(product.eks_vat) %></td>
-		<td style="text-align: right;"><%= number_to_currency(product.vat_in_currency) %></td>
-		<td style="text-align: right;"><%=  number_to_percentage(product.vat) %></td>
-		<td style="text-align: right;"><%= number_to_currency(product.total_price) %></td>
+		<td style="text-align: right;"><%= kroner(product.eks_vat) %></td>
+		<td style="text-align: right;"><%= kroner(product.vat_in_currency) %></td>
+		<td style="text-align: right;"><%=  kroner(product.vat) %></td>
+		<td style="text-align: right;"><%= kroner(product.total_price) %></td>
 		</tr>
-	
-	<% end -%>
+	<% end %>
+
+	<%- if !@invoice.discount.nil?-%>
+	<tr><td style="font-weight: bold;">Rabatt</td>
+		<td style="text-align: right;"></td>
+		<td style="text-align: right;"></td>
+		<td style="text-align: right;"></td>
+		<td style="text-align: right;"></td>
+		</tr>
+		<tr><td><%= @invoice.discount_text %></td>
+		<td style="text-align: right;"></td>
+		<td style="text-align: right;"></td>
+		<td style="text-align: right;"></td>
+		<td style="text-align: right;">-<%= kroner(@invoice.discount) %></td>
+		</tr>
+	<% end %>
 	<tr><td style="border-top: 1px solid #000;">Total</td>
-	<td style="text-align: right;border-top: 1px solid #000;"><%= number_to_currency(@invoice.registration.camp.total_eks_vat) %></td>
-	<td style="text-align: right;border-top: 1px solid #000;"><%= number_to_currency(@invoice.registration.camp.total_vat) %></td>
+	<td style="text-align: right;border-top: 1px solid #000;"><%= kroner(@invoice.registration.camp.total_eks_vat) %></td>
+	<td style="text-align: right;border-top: 1px solid #000;"><%= kroner(@invoice.registration.camp.total_vat) %></td>
 	<td></td>
 
-	<td style="text-align: right;border-top: 1px solid #000;"><%= number_to_currency(@invoice.registration.camp.products.sum(:total_price)) %></td>
+	<td style="text-align: right;border-top: 1px solid #000;"><%= kroner(@invoice.registration.camp.products.sum(:total_price)- @invoice.if_discount ) %></td>
 	</tr>
 	<% if !@invoice.credit_note.nil? %>
 	<tr style="color:red;">
@@ -30,8 +50,24 @@
 		<td> </td>
 		<td> </td>
 		<td><%= @invoice.credit_note.total %></td>
-		
-	</tr>
-	<% end -%>
-</table>
 
+	</tr>
+		<% end -%>
+	</table>
+
+	<% if @invoice.number.nil?  %>
+	<ul class="form_layout">
+		<%= form_for @invoice do |f| %>
+		<li>
+		<%= label_tag 'Rabatt grunn' %>
+		<%= f.text_field :discount_text %>
+		</li>
+
+		<li>
+		<%= label_tag 'Rabatt kroner' %>
+		<%= f.text_field :discount %>
+		</li>
+			<li><label>&nbsp;</label><%= f.submit('Lagre',:class => 'submit') %></li>
+		<% end -%>
+		<% end -%>
+		</ul>

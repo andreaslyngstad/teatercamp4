@@ -1,11 +1,30 @@
 <div id="fullpage">
-	<% x = 0 %>
-		<% @pages.each do |page| %>
-		<% x = x + 1 %>
-		<div class="section" id="section<%= x %>" data-anchor="<%= page.title %>">
-		 <%= raw(page.body) %>
-		</div>
-	<% end %>
+	<div id="content_index">
+	<div class="section" id="section1" data-anchor="<%= @page1.title %>">
+	 	<%= raw(@page1.body) %>
+	</div>
+	<div class="section folk" id="section2" >
+<h1 class="front">FOLKA VÅRE</h1>
+	<div class="scroller">
+		<% @people.each do |person| %>
 
-</div>
+		<div class="person_presenter">
+			<div>
+			<p><%= image_tag person.avatar.variant(:medium2) %></p>
+		 	<h2><%= person.name %></h2>
+			</div>
+		</div>
+
+		<% end %>
+
+	</div>
+
+
+	<div class="section" id="section3" data-anchor="<%= @page2.title %>">
+		<%= raw(@page2.body) %>
+	</div>
+	<div class="section" id="section4" data-anchor="<%= @page3.title %>">
+		<%= raw(@page3.body) %>
+	</div>
+	</div>
 </div>

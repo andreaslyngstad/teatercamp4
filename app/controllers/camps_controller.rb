@@ -27,11 +27,13 @@ class CampsController < ApplicationController
 
  def new
    @camp = Camp.new
-   @products = Product.all
+   @products = Product.where(active: true)
+   @people = Person.all
  end
  def edit
    @camp = Camp.find(params[:id])
-   @products = Product.all
+   @products = Product.where(active: true)
+   @people = Person.where(active: true)
  end
   # GET /camps/1
   # GET /camps/1.xml
@@ -50,6 +52,7 @@ class CampsController < ApplicationController
     @camp = Camp.new(camp_params)
     @camps = Camp.all
     @products = Product.all
+    @people = Person.all
     respond_to do |format|
       if @camp.save
         flash[:notice] = 'Kurset ble laget.'
@@ -94,7 +97,7 @@ class CampsController < ApplicationController
   end
   private
   def camp_params
-    params.require(:camp).permit(:name,:description,
-      :age1,:age2,:begin,:end,:participants,:public,:ingress, :product_ids =>[] )
+    params.require(:camp).permit(:name,:description, :cover_image,
+      :age1,:age2,:begin,:end,:participants,:public,:ingress, :product_ids =>[],:person_ids =>[]  )
   end
 end

@@ -7,9 +7,12 @@ class PublicController < ApplicationController
   layout "public"
 
   def index
-    @posts = Post.search(params[:search])
+    # @posts = Post.search(params[:search])
     # @parents = Page.roots
-    @pages = Page.where(name:[ 'Teater|camp', 'Film|camp', 'Om oss']).order("lft")
+    @page1 = Page.where(name:[ 'A-part']).first
+    @page2 = Page.where(name:[ 'B-part']).first
+    @page3 = Page.where(name:[ 'C-part']).first
+    @people = Person.where(active: true)
     @option = Option.first
     @camps = Camp.where(:public => true)
      if params[:id]
@@ -89,11 +92,12 @@ class PublicController < ApplicationController
      @camp = Camp.find(params[:id])
      end
    end
+
   def view_camp
     @pages = Page.order("lft")
     @option = Option.first
     @camp = Camp.find(params[:id])
-    render(:layout => 'camps')
+    # render(:layout => 'camps')
   end
 
 end

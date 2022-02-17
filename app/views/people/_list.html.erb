@@ -1,0 +1,33 @@
+<div id="content_l">
+	<h1>Folk</h1>
+	<p><%= link_to "Ny person", new_person_path %></p>
+
+	<table class="table_regular_adm" cellspacing="0" cellpadding="0">
+		<tr>
+			<th>Bilde</th>
+			<th>Navn</th>
+			<th></th>
+			<th>Aktiv</th>
+			<th></th>
+
+		</tr>
+
+	<% for person in (@people) -%>
+ 	<tr>
+			<td>
+			<%  if person.avatar.attached? %>
+ 				<%= image_tag person.avatar.variant(:thumb) %>
+			<% end %>
+		</td>
+    <td><%= link_to(truncate((person.name), :length => 22), people_path(person)) %></td>
+   	<td></td>
+		<td><%= person.active %></td>
+		<td>
+
+			<%= link_to 'Oppdater', edit_person_path(person)%>
+			<%= link_to 'Slett',  person,  method: :delete, data: { confirm: 'Er du sikker?' }  %>
+		</td>
+ 	</tr>
+	<% end -%>
+	</table>
+</div>

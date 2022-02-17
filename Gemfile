@@ -2,25 +2,24 @@ source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 gem 'tabulous', git: 'https://github.com/andreaslyngstad/tabulous.git'
+
 group :development do
   gem "capistrano"
   gem 'capistrano-bundler'
   gem 'capistrano-rails'
   gem 'capistrano-faster-assets', '~> 1.0'
   gem 'capistrano-rbenv'
-  gem 'capistrano-passenger'
+  gem 'capistrano3-puma',   require: false
 end
 gem 'sass-rails'
 gem 'jquery-rails'
 gem "bcrypt-ruby", :require => "bcrypt"
-
-gem "passenger"
+gem 'pdfkit'
 
 ruby "2.7.5"
-
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "7.0.0"
-
+gem "jquery-slick-rails"
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 
@@ -35,6 +34,7 @@ gem "importmap-rails"
 
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem "turbo-rails"
+
 
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails"
@@ -61,7 +61,7 @@ gem "bootsnap", require: false
 # gem "sassc-rails"
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
-# gem "image_processing", "~> 1.2"
+gem "image_processing", "~> 1.2"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

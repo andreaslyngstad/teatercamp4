@@ -1,23 +1,43 @@
-
+//= require actiontext
+//= require slick
+@import 'slick-theme';
 @import 'jquery.fullPage';
 @import 'forms-min';
 
-html,body					{color:#fff;
-									}
+@font-face {
+   font-family: 'Adoha';
+   src: url('Adoha.otf');
+}
+@font-face {
+   font-family: 'Roolfe';
+   src: url('Roolfe.otf');
+}
+@font-face {
+   font-family: 'AktivGroteskCorp-Regular';
+   src: url('AktivGroteskCorp-Regular.woff2');
+}
+@font-face {
+   font-family: 'Girott';
+   src: url('Girott.woff2');
+}
+html,body					{color:#000;
+									font-family: 'AktivGroteskCorp-Regular';
+							}
 .clr							{clear:both;}
 .l								{float:left;}
 .r								{float:right;}
-h2 a							{color:#fff;}
-a								{color:#fff;
+h2 a							{color:#000;}
+a								{color:#000;
 									text-decoration: none;
 									}
 a:hover							{color:#aaa;}
 p								{padding:5px 0px 5px 0px;}
 h1, h2{
-	   color: #fff;
+	   color: #000;
      font-size: 150%;
-    font-style: italic;
-    font-variant-ligatures: common-ligatures;
+    // font-style: italic;
+	    font-family: girott,sans-serif;
+    // font-variant-ligatures: common-ligatures;
     font-weight: 300;
     letter-spacing: 0;
     line-height: 1.4;
@@ -39,12 +59,40 @@ textarea {
     width: 90%;
     height: 200px;
 }
-h1{border-bottom: 1px solid #641778;}
+h1.front{
+	font-size: 60px;
+	// border-bottom: 1px solid #641778;
+}
 
+.scroller {
+  div {
+    text-align: center;
+    font-size: 30px;
+  }
+}
 
+.slick-prev::before, .slick-next::before {
+  color: #000;
+}
+
+.slick-next {
+  right: -5px;
+}
+
+.slick-prev {
+  left: -5px;
+}
 
 #fullpage{
 	/*margin-top: 120px;*/
+}
+
+#content{
+	margin-top:5%;
+	// margin-left: 10%;
+	// margin-right: 10%;
+	// width: 80%;
+
 }
 .center{
 	 font-family: "Open Sans","Helvetica Neue","Helvetica","Arial",sans-serif;
@@ -68,12 +116,55 @@ h1{border-bottom: 1px solid #641778;}
 }
 
 .left_camps ul li{
-	padding: 3%;
+  padding-top: 3%;
+
 
 }
 
 @media screen and (min-width: 700px) {
 	#fullpage{font-size: 150%;}
+	#content_index{
+	width: 90%;
+	margin:9% 5% 0 5%;
+
+	}
+	#menu li a{
+	    color: #fff;
+			font-size: 60px;
+		}
+		#menu li a, #menu li.active a {
+		    padding: 20px 50px;
+		    display: block;
+		}
+	.folk{
+		text-align: center;
+	}
+	.person_presenter div{
+		width: 300px;
+		text-align: center;
+	.person_presenter h2{
+
+	}
+	}
+	.person_presenter p{
+		padding: 0;
+	}
+	.tretti_prosent{
+		display: inline-block;
+		text-align: left;
+		float:left;
+		width: 29%;
+		padding-left: 2%;
+		padding-right: 2%;
+	}
+	.50prosent{
+		display: inline-block;
+		text-align: left;
+		float:left;
+		width: 46%;
+		padding-left: 2%;
+		padding-right: 2%;
+	}
 	.left{
 	padding-top: 2%;
 	padding-bottom: 3%;
@@ -84,6 +175,57 @@ h1{border-bottom: 1px solid #641778;}
 	display: inline-block;
 	text-align: left;
 	float:left;
+
+}
+.camp_list{
+	width: 100%;
+	 display: inline-block;
+	border-bottom: 1px #CCCCCC solid;
+}
+
+.camp_holder{
+	display: inline-block;
+	text-align: left;
+	float:left;
+	width: 33%;
+}
+
+.camp_col_1{
+width: 20%;
+
+}
+.camp_col_2{
+	width: 40%;
+}
+.camp_col_3{
+	width: 40%;
+}
+
+	.left_camp{
+	// padding-top: 2%;
+	// padding-bottom: 3%;
+	 padding-right: 5%;
+	// padding-left:5%;
+
+
+	display: inline-block;
+	text-align: left;
+	float:left;
+
+}
+.right_camp{
+  font-weight: 300;
+  letter-spacing: 0.5px;
+  line-height: 1.4;
+	// padding-top: 2%;
+	// padding-bottom: 3%;
+	 padding-right: 5%;
+	// padding-left:3%;
+	display: inline-block;
+
+
+	text-align: left;
+		float:left;
 
 }
 	.left_camps{
@@ -138,8 +280,26 @@ h1{border-bottom: 1px solid #641778;}
 
 }
 }
+@media screen and (  max-width: 912px){
+	#content_index{
+	width: 90%;
+	margin:15% 5% 0 5%;
+
+	}
+	#menu li a{
+	    color: #fff;
+			font-size:40px;
+		}
+		#menu li a, #menu li.active a {
+				padding: 20px 30px;
+				display: block;
+		}
+
+}
+
+
 @media screen and (max-width: 700px){
-	#fullpage{font-size: 70%;}
+	#fullpage{font-size: 100%;}
 	.left{
 
 	padding-top: 2%;
@@ -153,6 +313,14 @@ h1{border-bottom: 1px solid #641778;}
 	float:left;
 
 }
+#menu li a{
+    color: #fff;
+		font-size:25px;
+	}
+	#menu li a, #menu li.active a {
+			padding: 20px 30px;
+			display: block;
+	}
 	.right{
 
   font-weight: 300;
@@ -172,39 +340,50 @@ h1{border-bottom: 1px solid #641778;}
 }
 
 .teatercamp_bk{
-	background-color: rgba(43, 21, 71, 0.7);}
+	// background-color: rgba(43, 21, 71, 0.7);
+}
 .filmcamp_bk{
-	background-color: rgba(23, 52, 20, 0.7);
+	// background-color: rgba(23, 52, 20, 0.7);
 }
 
 .camps_bk{
-	background-color: rgba(69, 99, 84, 0.9);
+	// background-color: rgba(69, 99, 84, 0.9);
 }
 .blogg_bk{
-	background-color: rgba(25, 67, 121, 0.9);
+	// background-color: rgba(25, 67, 121, 0.9);
 }
 
 .oss_bk{
-	background-color: rgba(25, 67, 121, 0.7);
+	// background-color: rgba(25, 67, 121, 0.7);
 }
-
-
+.section{
+	padding:5%;
+	width: 90%;
+	display: inline-block;
+}
+.section img{
+	padding: 1%;
+	float:left;
+}
 #section1{
 
-	background: url(asset-path('public.jpg') ) 50% 50% / cover;
+	background-color: blue;
 }
 #section2{
-	background: url(asset-path("filmcamp.jpg")) 50% 50% / cover;
+		background-color: red;
 }
-#section3{
-	background: url(asset-path("om_oss.jpg")) 50% 50% / cover;
+.attachment__caption {
+	display: none;
 }
-#section4{
-	background: url(asset-path("kurs.jpg")) 50% 50% / cover;
-}
-#section5{
-	background: url(asset-path("skog.jpg")) 50% 50% / cover;
-}
+// #section3{
+// 	background: url(asset-path("om_oss.jpg")) 50% 50% / cover;
+// }
+// #section4{
+// 	background: url(asset-path("kurs.jpg")) 50% 50% / cover;
+// }
+// #section5{
+// 	background: url(asset-path("skog.jpg")) 50% 50% / cover;
+// }
 .new_camp{
 	height: 1000px;
 	width:100%;
@@ -249,14 +428,15 @@ textarea
     padding: 0;
     margin: 0;
     background-color: #000;
-}
+		font-family: "Girott";
+		text-align: center;
+	}
 #menu li {
     display: inline-block;
     /* border-right: 1px solid rgba(255,255,255,.52); */
-    color: #000;
+	}
 
 
-}
 #menu li.active {
  background-color: #fff;
  color:black;
@@ -273,10 +453,7 @@ textarea
 
 }
 
-#menu li a, #menu li.active a {
-    padding: 12px 18px;
-    display: block;
-}
+
 
 /* @media screen and (max-width: 500px){
 #menu li a, #menu li.active a {
@@ -568,3 +745,4 @@ cursor:pointer;
 #footer ul li					{list-style:none;}
 #footer ul li a					{display:block; padding:0px 0px 0px 0px;color:#000;font-weight:bold;}
 #footer ul li a:hover			{color:#999;}
+@import 'actiontext.css';

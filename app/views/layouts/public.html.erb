@@ -13,7 +13,7 @@
   <title><%= @app_name %>: <%= @page_title %></title>
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" media="screen" rel="stylesheet" type="text/css">
   <%= stylesheet_link_tag "application" %>
- <%=  javascript_include_tag "application" %>
+ <%=  javascript_importmap_tags "application" %>
  <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -38,37 +38,34 @@
 
 
 <ul id="menu">
-
-<li data-menuanchor="teatercamp"
-<% if current_page?(controller: 'public', action: 'index') %>
-class="active"
-<% end %>
->
-<a href="<%= root_url %>#teatercamp">Teater|camp</a></li>
-<li data-menuanchor="filmcamp"><a href="<%= root_url %>#filmcamp">Film|camp</a></li>
-<li data-menuanchor="om_oss"><a href="<%= root_url %>#om_oss">Om oss</a></li>
+  <li data-menuanchor="teatercamp"
+    <% if current_page?(controller: 'public', action: 'index') %>
+      class="active"
+    <% end %>
+  >
+    <a href="<%= root_url %>">TEATER|CAMP</a></li>
 	<li data-menuanchor="kurs"
-<% if current_page?(controller: 'public', action: 'camps') %>
-class="active"
-<% end %>
->
-
-    <a href="<%= view_camps_path %>">Kurs</a></li>
+    <% if current_page?(controller: 'public', action: 'camps') %>
+    class="active"
+    <% end %>
+    >
+      <a href="<%= view_camps_path %>">KURS</a>
+  </li>
 	<li data-menuanchor="news"
   <% if current_page?(controller: 'public', action: 'blogg') %>
   class="active"
   <% end %>
   >
-  <a href="<%= view_blogg_path %>">Nyheter</a></li>
-	<%if logged_in?%>
-		<li><%= link_to "Logg ut","/logout" %></li>
-		<li><%= link_to( "Til CMS", cms_path) %></li>
-
-			<%end%>
-
+    <a href="<%= view_blogg_path %>">NYHETER</a></li>
+  	<%if logged_in?%>
+	<li><%= link_to "Logg ut","/logout" %></li>
+	<li><%= link_to( "Til CMS", cms_path) %></li>
+    <%end%>
 </ul>
-<div class="fb-follow" data-href="https://www.facebook.com/teatercamp" data-layout="button_count" data-show-faces="true"></div>
-<%= yield %>
+<div id='content'>
+  <%= yield %>
+</div>
+
 <!-- start footer -->
 <!-- <div id="footer">
 	<div id="footer_wrapper">&#169; Teater|camp - t. 92056833 m. tiril@teatercamp.no</div>

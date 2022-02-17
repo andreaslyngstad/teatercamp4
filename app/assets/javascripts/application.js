@@ -1,7 +1,11 @@
 //= require jquery
+//= require jquery.quicksearch.js
 //= require jquery_ujs
+//= require jquery.slick
+//= require jquery.tablesorter.min.js
+
 //= require_self
-//= require_tree .
+
 
 jQuery.ajaxSetup({
   'beforeSend': function(xhr) {xhr.setRequestHeader("Accept", "text/javascript")}
@@ -46,14 +50,68 @@ jQuery.fn.send_credit_note = function (){
 
 $(document).ready(function() {
 
-  $('#fullpage').fullpage({
-    //Navigation
-    sectionsColor: ['#2b1547', '#173414', '#194379', '#f46015', '#2b1547', '#173414', '#194379', '#f46015'],
-        // anchors: ['index', 'kurs', 'news'],
-        menu: '#menu',
-        continuousVertical: true,
-        resize : false
-  });
+  $('.scroller').slick({
+
+    //
+     dots: true,
+    centerMode: true,
+    centerPadding: '40px',
+    // focusOnSelect: true
+    responsive: [
+       {
+         breakpoint: 10240,
+         settings: {
+           slidesToShow: 6,
+           slidesToScroll: 1,
+           infinite: true,
+           dots: true
+         }
+       },
+       {
+         breakpoint:2200,
+         settings: {
+           slidesToShow: 4,
+           slidesToScroll: 1,
+           infinite: true,
+           dots: true
+         }
+       },
+       {
+         breakpoint: 1400,
+         settings: {
+           slidesToShow: 3,
+           slidesToScroll: 1
+         }
+       },
+       {
+         breakpoint: 1200,
+         settings: {
+           slidesToShow: 2,
+           slidesToScroll: 1
+         }
+       },
+       {
+         breakpoint: 760,
+         settings: {
+           slidesToShow: 1,
+           slidesToScroll: 1
+         }
+       }
+
+       // You can unslick at a given breakpoint now by adding:
+       // settings: "unslick"
+       // instead of a settings object
+     ]
+  })
+  //
+  // $('#fullpage').fullpage({
+  //   //Navigation
+  //   sectionsColor: ['#2b1547', '#173414', '#194379', '#f46015', '#2b1547', '#173414', '#194379', '#f46015'],
+  //       // anchors: ['index', 'kurs', 'news'],
+  //       menu: '#menu',
+  //       continuousVertical: true,
+  //       resize : false
+  // });
 	$('input#search').quicksearch('table.tablesorter tbody tr', {
 
 	});

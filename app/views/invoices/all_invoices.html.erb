@@ -39,9 +39,9 @@ Ikke sendt
 <td><%= invoice.registration.billing_email %></td>
 <td><%= invoice.registration.camp.name %></td>
 <% if invoice.credit_note.nil? %>
-<td><%= number_to_currency(invoice.total_price) %></td>
+<td><%= kroner(invoice.total_price) %></td>
 	<% else %>
-	<td style="color:red;"><%= number_to_currency(invoice.credit_note.total) %></td>
+	<td style="color:red;"><%= kroner(invoice.credit_note.total) %></td>
 	<% end -%>
 <td>
 

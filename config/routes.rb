@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :people
   get "credit_note/index"
 
   get "invoices/create"

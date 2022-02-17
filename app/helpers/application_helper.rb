@@ -1,10 +1,10 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
-  
+
   def markdown(text)
     Redcarpet.new(text).to_html.html_safe
   end
-  
+
  def total(invoices)
      total    = 0
      vat      = 0
@@ -16,16 +16,19 @@ module ApplicationHelper
      end
      [total, vat, eks_vat]
    end
-  
+
   def render_error_messages(*objects)
     messages = objects.compact.map { |o| o.errors.full_messages}.flatten
     render :partial => 'shared/error_message', :object => messages unless messages.empty?
   end
-def logged_in? 
-    unless session[:user_id] 
-      return false 
-    else 
-      return true 
-    end 
+  def kroner(number)
+     number_to_currency(number, unit: ",-", format: "%n %u", precision: 0, delimiter: " ")
+  end
+def logged_in?
+    unless session[:user_id]
+      return false
+    else
+      return true
+    end
   end
 end

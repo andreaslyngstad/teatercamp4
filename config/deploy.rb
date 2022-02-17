@@ -1,34 +1,50 @@
 # config valid for current version and patch releases of Capistrano
 lock "~> 3.16.0"
 
+
 set :application, 'teatercamp'
-set :user, 'teatercamp'
+set :user, 'rails'
+set :pty,             true
+set :use_sudo,        false
+
+server "teatercamp.no",
+  user: 'teatercamp',
+  roles: %w{web app db},
+  ssh_options: {
+    user: 'rails',
+    keys: %w(/home/rails/.ssh/id_rsa),
+    forward_agent: true,
+    auth_methods: %w(publickey password),
+    password: 'hardu96X'
+}
+
 set :repo_url, 'git@github.com:andreaslyngstad/Teatercamp4.git'
 set :branch, 'main'
 
+
+
 set :deploy_via,      :remote_cache
-set :deploy_to, "/var/www/vhosts/teatercamp.no/httpdocs/"
-set :bundle_path, '/var/www/vhosts/teatercamp.no/httpdocs/gems'
+set :deploy_to, "/home/rails/app/teatercamp"
+set :bundle_path, '/home/rails/app/teatercamp/gems'
 # set :default_env, {
 #     path: '/usr/local/rbenv/plugins/ruby-build/bin:/usr/local/rbenv/shims:/usr/local/rbenv/bin:$PATH',
 #     rbenv_root: '/usr/local/rbenv'
 # }
-set :rbenv_roles, :all
-set :rbenv_ruby, '2.7.5'
-set :rbenv_ruby_dir, '/home/teatercamp/.rbenv/versions/2.7.5'
-set :rbenv_prefix, '/usr/bin/rbenv exec'
+# set :rbenv_roles, :all
+# set :rbenv_ruby, '2.7.5'
+# set :rbenv_ruby_dir, '/home/rails/.rbenv/versions/2.7.5'
+# set :rbenv_prefix, '/usr/bin/rbenv exec'
 # set :rbenv_custom_path, '/usr'
 
 append :linked_files, 'config/database.yml', 'config/email.yml', 'config/master.key'
-append :linked_dirs, 'bin', 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'public/uploads'}
+append :linked_dirs, 'bin', 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'public/uploads'
 set :assets_dependencies, %w(app/assets lib/assets vendor/assets Gemfile.lock config/routes.rb)
 set :keep_releases, 5
 set :format, :pretty
 set :log_level, :debug
-set :pty, true
 
 set :rbenv_type, :user
-# set :rbenv_ruby, "2.7.5"
+set :rbenv_ruby, "2.7.5"
 
 
 set :rails_assets_groups, :assets
@@ -39,8 +55,6 @@ set :keep_assets, 2
 set :puma_threads,    [4, 16]
 set :puma_workers,    0
 
-set :pty,             true
-set :use_sudo,        false
 set :stage,           :production
 set :puma_bind,       "unix://#{shared_path}/tmp/sockets/#{fetch(:application)}-puma.sock"
 set :puma_state,      "#{shared_path}/tmp/pids/puma.state"
@@ -52,25 +66,6 @@ set :puma_preload_app, true
 set :puma_worker_timeout, nil
 set :puma_init_active_record, true  # Change to false when not using ActiveRecord
 
-append :linked_files, "config/master.key"
-append :linked_dirs, "log", "tmp/pids", "tmp/cache", "public/uploads"
-# namespace :deploy do
-#   namespace :assets do
-#       task :precompile, :roles => :web do
-#         from = source.next_revision(current_revision)
-#         if capture("cd #{latest_release} && #{source.local.log(from)} vendor/assets/ lib/assets/ app/assets/ | wc -l").to_i > 0
-#           run_locally("rake assets:clean && rake assets:precompile")
-#           run_locally "cd public && tar -jcf assets.tar.bz2 assets"
-#           top.upload "public/assets.tar.bz2", "#{shared_path}", :via => :scp
-#           run "cd #{shared_path} && tar -jxf assets.tar.bz2 && rm assets.tar.bz2"
-#           run_locally "rm public/assets.tar.bz2"
-#           run_locally("rake assets:clean")
-#         else
-#           logger.info "Skipping asset precompilation because there were no asset changes"
-#         end
-#       end
-#     end
-#   end
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
