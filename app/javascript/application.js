@@ -1,15 +1,13 @@
 // Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
 //= link_tree ../assets/images
 //= link_directory ../assets/stylesheets .css
-//= link_tree ../assets/javascripts
+
 import "trix"
 import "@rails/actiontext"
+import "jQuery"
+import 'tablesorter'
+import 'quicksearch'
 
-//= require jquery
-//= require jquery.quicksearch.js
-//= require jquery_ujs
-//= require jquery.slick
-//= require jquery.tablesorter.min.js
 
 
 
