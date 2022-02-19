@@ -5,19 +5,20 @@
 	</div>
 	<div class="section folk" id="section2" >
 <h1 class="front">FOLKA VÅRE</h1>
+<div class="scroller_holder">
 	<div class="scroller">
 		<% @people.each do |person| %>
-
 		<div class="person_presenter">
 			<div>
 			<p><%= image_tag person.avatar.variant(:medium2) %></p>
-		 	<h2><%= person.name %></h2>
+			<h2><%= person.name %></h2>
 			</div>
 		</div>
-
 		<% end %>
-
 	</div>
+
+</div>
+
 
 
 	<div class="section" id="section3" data-anchor="<%= @page2.title %>">

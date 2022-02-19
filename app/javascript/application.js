@@ -1,14 +1,19 @@
 // Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
 //= link_tree ../assets/images
 //= link_directory ../assets/stylesheets .css
-//= link_tree ../assets/javascripts
+
 import "trix"
 import "@rails/actiontext"
-import "jQuery"
+// import * as $ from 'jquery';
+// import * as jQuery from 'jquery';
+// import * as jQuery from 'jquery';
+import './jquery-global.js';
+import "tablesorter";
+import "quicksearch";
+import "slick";
+// window.quicksearch = quicksearch;
 
-
-
-
+// window.tablesorter = tablesorter;
 
 
 jQuery.ajaxSetup({
@@ -65,7 +70,7 @@ $(document).ready(function() {
        {
          breakpoint: 10240,
          settings: {
-           slidesToShow: 6,
+           slidesToShow: 5,
            slidesToScroll: 1,
            infinite: true,
            dots: true
@@ -81,16 +86,25 @@ $(document).ready(function() {
          }
        },
        {
-         breakpoint: 1400,
+         breakpoint:1800,
          settings: {
            slidesToShow: 3,
+           slidesToScroll: 1,
+           infinite: true,
+           dots: true
+         }
+       },
+       {
+         breakpoint: 1400,
+         settings: {
+           slidesToShow: 2,
            slidesToScroll: 1
          }
        },
        {
-         breakpoint: 1200,
+         breakpoint: 1000,
          settings: {
-           slidesToShow: 2,
+           slidesToShow: 1,
            slidesToScroll: 1
          }
        },
