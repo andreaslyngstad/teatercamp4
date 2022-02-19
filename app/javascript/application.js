@@ -7,7 +7,7 @@ import "@rails/actiontext"
 // import * as $ from 'jquery';
 // import * as jQuery from 'jquery';
 // import * as jQuery from 'jquery';
-import 'jquery-global.js';
+import 'jquery-global';
 import "tablesorter";
 import "quicksearch";
 import "slick";
