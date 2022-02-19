@@ -4,7 +4,7 @@ pin "application", preload: true
 pin "trix"
 pin "@rails/actiontext", to: "actiontext.js"
 pin "jquery", to: "https://ga.jspm.io/npm:jquery@3.6.0/dist/jquery.js"
-pin "jquery-global", to: "app/javascript/jquery-global.js"
+pin "jquery-global", to: "/app/javascript/jquery-global.js"
 pin_all_from  "app/javascript/", under: "javascript"
 # pin 'jquery', to: 'https://code.jquery.com/jquery-1.12.4.min.js'
 pin_all_from "app/javascript/controllers", under: "controllers"
