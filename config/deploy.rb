@@ -36,7 +36,7 @@ set :bundle_path, '/home/rails/app/teatercamp/gems'
 # set :rbenv_prefix, '/usr/bin/rbenv exec'
 # set :rbenv_custom_path, '/usr'
 
-append :linked_files, 'config/database.yml', 'config/email.yml', 'config/master.key'
+append :linked_files, 'config/database.yml', 'config/email.yml', 'config/master.key', 'config/storage.yml'
 append :linked_dirs, 'bin', 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'public/uploads'
 set :assets_dependencies, %w(app/assets lib/assets vendor/assets Gemfile.lock config/routes.rb)
 set :keep_releases, 5
