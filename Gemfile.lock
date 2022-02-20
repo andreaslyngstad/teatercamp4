@@ -272,6 +272,7 @@ DEPENDENCIES
   pdfkit
   puma (~> 5.0)
   rails (= 7.0.0)
+  ruby-vips
   sass-rails
   selenium-webdriver
   sprockets-rails
