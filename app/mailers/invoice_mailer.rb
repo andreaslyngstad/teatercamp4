@@ -4,37 +4,28 @@ class InvoiceMailer < ActionMailer::Base
   def send_invoice(invoice)
     @invoice = invoice
     collecter
-
-      html = (InvoicesController.render 'show_pdf', assigns: { invoice: @invoice}).to_str
-    
-    put = PDFKit.new(html, title: "faktura").to_pdf
+    html =    render template: "invoices/show_pdf", assigns: { invoice: @invoice}
+    put = PDFKit.new(html).to_pdf
     attachments['faktura.pdf'] = put
-    mail(:to => @registration.billing_email, :subject => "Faktura", :bcc => 'faktura@teatercamp.no')
+    mail(:to => @registration.billing_email, :subject => "Faktura")
   end
+
   def send_reminder(invoice)
     @invoice = invoice
     collecter
-    html = render_to_string(:action => "../show_pdf.html.erb")
-     mail(:to => @registration.billing_email, :subject => "Påminnelse", :bcc => 'faktura@teatercamp.no') do |format|
-      format.text
-      format.html
-      format.pdf do
-        attachments['faktura.pdf'] = PDFKit.new(html).to_pdf
-      end
-    end
+    html = render template: "invoices/show_pdf", assigns: { invoice: @invoice}
+    attachments['faktura.pdf'] = PDFKit.new(html).to_pdf
+     mail(:to => @registration.billing_email, :subject => "Påminnelse")
   end
+
   def send_credit_note(invoice)
     @credit_note = invoice
     @invoice = invoice.invoice
     collecter
-    html = render_to_string(:action => "../show_credit_note.html.erb")
-     mail(:to => @registration.billing_email, :subject => "Kreditnota", :bcc => 'faktura@teatercamp.no') do |format|
-      format.text
-      format.html
-      format.pdf do
-        attachments['Kredittnota.pdf'] = PDFKit.new(html).to_pdf
-      end
-    end
+    html = render template: "invoices/show_credit_note", assigns: { invoice: @invoice}
+    put = PDFKit.new(html).to_pdf
+    attachments['Kredittnota.pdf'] = PDFKit.new(html).to_pdf
+     mail(:to => @registration.billing_email, :subject => "Kreditnota")
   end
 private
 

@@ -2,55 +2,61 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <style type="text/css" media="print">
 .faktura p {font-size: 20px;}
-.faktura_wrapper{position: absolute; top: 0; left: 0; }
-.faktura_text{position: absolute; top: 3cm; left: 1cm;width: 20cm; display:block;}
+.faktura_wrapper{position: absolute; top: 0cm; left: 0; }
+.faktura_text{position: absolute; top: 5cm; left: 1cm;width: 11cm;}
 .pdf_header{position: absolute; top: 0.5cm; left:1cm; width: 21cm; font-size:20px; }
-.pdf_info{position: absolute; top: 0cm; left:20cm;  font-size: 20px; }
-.pdf_info p {padding: 0;}
+.pdf_info{position: absolute; top: 5cm; left:12cm; width: 11cm; font-size: 20px; }
 .invoice_show{position: absolute; top: 0cm; left:0cm; font-size: 20px;display: block;}
-.invoice_prices{position: absolute; top: 15cm; left:0cm;  width: 29cm; font-size: 20px;display: block;}
+.invoice_prices{position: absolute; top: 15cm; left:0cm;  width: 20cm; font-size: 20px; background-color: yellow;}
 .invoice_show td {max-width: 5cm;}
-.last_lines{position: absolute;top: 27cm; left:2cm;display: block; width: 20cm;font-size: 30px;}
+.last_lines{position: absolute;top: 29cm; left:2cm;display: block; width: 20cm;font-size: 30px;}
 </style>
 </head>
 <div class='faktura'>
 <div class="pdf_header">
+
+  <%   def kroner(number)
+       number_to_currency(number, unit: ",-", format: "%n %u", precision: 0, delimiter: "")
+    end %>
+    <%   def kroner_no_unit(number)
+         number_to_currency(number, unit: "", format: "%n %u", precision: 0, delimiter: "")
+      end %>
 <h1>Faktura for <%= @invoice.registration.camp.name %></h1>
 
 
 </div>
+<div class="faktura_wrapper">
 <div class="pdf_info">
-    <p>Andreas Lyngstad</p>
-    <p>Org.nr: <%= @vat %></p>
-    <p>Åsheimkroken 106</p>
-    <p>1820 Spydeberg</p>
-    <p>Epost: andreas@lizz.no</p>
-    <p>Kontonr: <%= @account %></p>
+<table class="invoice_show" border="0" cellspacing="10" cellpadding="1" >
+    <tr><td>Andreas Lyngstad</td></tr>
+  	<tr><td>Åsheimkroken 106</td></tr>
+    	<tr><td>1820 Spydeberg</td></tr>
+      <tr><td>Org.nr:</td><td> <%= @vat %></td></tr>
+    	<tr><td>Epost:</td><td> info@teatercamp.no</td></tr>
+    	<tr><td>Kontonr:</td><td> <%= @account %></td></tr>
     	<% if !@invoice.made_date.nil? %>
-    <p>Faktura dato: <%=   @invoice.made_date.strftime('%d.%m.%Y') %></p>
+    	<tr><td>Faktura dato: </td><td><%=   @invoice.made_date.strftime('%d.%m.%Y') %></td></tr>
     <% end  %>
     <% if !@invoice.pay_by.nil? %>
-    <p style="font-weight: bold;">Faktura forfall: <%=   @invoice.pay_by.strftime('%d.%m.%Y') %></p>
+    	<tr><td>Betalingsfrist:</td><td><%=   @invoice.pay_by.strftime('%d.%m.%Y') %></td></tr>
     <% end  %>
+    <tr><td>Faktura nummer</td>
+  		<td><%= @invoice.number %></td>
+  	</tr>
+
+    <tr style="font-weight: bold;"><td>Beløp: </td><td><%= kroner_no_unit(@invoice.registration.camp.products.sum(:total_price)- @invoice.if_discount) %> kroner</td></tr>
+  </table>
     </div>
 
-<div class="faktura_wrapper">
-
 <div class="faktura_text">
-
-
-
 <table class="invoice_show" border="0" cellspacing="10" cellpadding="1" >
-	<tr><td>Faktura nummer</td>
-		<td><%= @invoice.number %></td>
-
-	</tr>
 	<tr><td>Deltager</td><td><%= @invoice.registration.name %></td></tr>
 	<tr><td>Faktura epost</td><td><%= @invoice.registration.billing_email %></td></tr>
 	<tr><td>Kurs</td><td><%= @invoice.registration.camp.name %></td></tr>
 	<tr><td>Fra <%= @invoice.registration.camp.begin.strftime('%d.%m.%Y')%></td><td>Til <%= @invoice.registration.camp.end.strftime('%d.%m.%Y') %></td></tr>
 </table>
 <table class="invoice_prices" border="0" cellspacing="10" cellpadding="1" >
+  <tr style="font-weight: bold;"><td style=" text-align: left;"><%= @invoice.registration.camp.name %></td></tr>
 	<tr style="font-weight: bold;"><td style=" text-align: left;">Produkter</td>
 		<td style=" text-align: right;" >Pris</td>
 		<td style=" text-align: right;">MVA</td>
@@ -63,7 +69,7 @@
 		<td style="text-align: right;"><%= kroner(product.vat_in_currency) %></td>
 
 		<td style="text-align: right;"><%= kroner(product.total_price) %></td>
-		<td style="text-align: right;"><%=  product.vat %></td>
+		<td style="text-align: right;"><%=  number_to_percentage product.vat, precision: 0 %></td>
 		</tr>
 	<% end -%>
   <%- if !@invoice.discount.nil?-%>
@@ -73,6 +79,7 @@
 		<td style="text-align: right;"></td>
 		<td style="text-align: right;"></td>
 		</tr>
+
 		<tr><td><%= @invoice.discount_text %></td>
 		<td style="text-align: right;"></td>
 		<td style="text-align: right;"></td>
@@ -86,12 +93,11 @@
 	<td style="text-align: right;border-top: 1px solid #000;"><%= kroner(@invoice.registration.camp.products.sum(:total_price)- @invoice.if_discount) %></td>
 	<td></td>
 	</tr>
-
-
 </table>
 </div>
 <div class='last_lines'>
-<p style="font-weight: bold;">Beløp <%= kroner(@invoice.registration.camp.products.sum(:total_price)- @invoice.if_discount) %> til konto <%= @account %>. Vennligs merk betalingen med fakturanummer. </p>
+<p style="font-weight: bold;">Beløp <%= kroner_no_unit(@invoice.registration.camp.products.sum(:total_price)- @invoice.if_discount) %> kroner til konto <%= @account %>. </p>
+<p style="font-weight: bold;">  Vennligs merk betalingen med fakturanummer: <%= @invoice.number %> </p>
  </div>
   </div>
   </div>

@@ -6,6 +6,7 @@ class Invoice < ActiveRecord::Base
   def total_price
     products.sum(:total_price)
   end
+  
   def if_discount
     if discount.nil?
        0

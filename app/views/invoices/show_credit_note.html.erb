@@ -12,7 +12,12 @@
 </head>
 <div class="pdf_header">
 <h1>Kreditnota for faktura <%= @invoice.number %></h1>
-
+<%   def kroner(number)
+     number_to_currency(number, unit: ",-", format: "%n %u", precision: 0, delimiter: "")
+  end %>
+  <%   def kroner_no_unit(number)
+       number_to_currency(number, unit: "", format: "%n %u", precision: 0, delimiter: "")
+    end %>
 
 </div>
 <div class="pdf_info">
@@ -50,20 +55,34 @@
 		</tr>
 	<% @invoice.registration.camp.products.each do |product| %>
 	<tr><td><%= product.description %></td>
-		<td style="text-align: right;">- <%= number_to_currency(product.eks_vat) %></td>
-		<td style="text-align: right;">- <%= number_to_currency(product.vat_in_currency) %></td>
+		<td style="text-align: right;">- <%= kroner(product.eks_vat) %></td>
+		<td style="text-align: right;">- <%= kroner(product.vat_in_currency) %></td>
 
-		<td style="text-align: right;">- <%= number_to_currency(product.total_price) %></td>
-		<td style="text-align: right;">- <%=  number_to_percentage(product.vat) %></td>
+		<td style="text-align: right;">- <%= kroner(product.total_price) %></td>
+		<td style="text-align: right;">- <%=  number_to_percentage(product.vat, precision: 0) %></td>
+		</tr>
+	<% end -%>
+  <%- if !@invoice.discount.nil?-%>
+	<tr><td style="font-weight: bold;">Rabatt</td>
+		<td style="text-align: right;"></td>
+		<td style="text-align: right;"></td>
+		<td style="text-align: right;"></td>
+		<td style="text-align: right;"></td>
 		</tr>
 
-	<% end -%>
+		<tr><td><%= @invoice.discount_text %></td>
+		<td style="text-align: right;"></td>
+		<td style="text-align: right;"></td>
+		<td style="text-align: right;">-<%= kroner(@invoice.discount) %></td>
+		<td style="text-align: right;"></td>
+		</tr>
+	<% end %>
 	<tr><td style="border-top: 1px solid #000;">Total</td>
-	<td style="text-align: right;border-top: 1px solid #000;">- <%= number_to_currency(@invoice.registration.camp.total_eks_vat) %></td>
-	<td style="text-align: right;border-top: 1px solid #000;">- <%= number_to_currency(@invoice.registration.camp.total_vat) %></td>
+	<td style="text-align: right;border-top: 1px solid #000;">- <%= kroner(@invoice.registration.camp.total_eks_vat) %></td>
+	<td style="text-align: right;border-top: 1px solid #000;">- <%= kroner(@invoice.registration.camp.total_vat) %></td>
 
 
-	<td style="text-align: right;border-top: 1px solid #000;">- <%= number_to_currency(@invoice.registration.camp.products.sum(:total_price)) %></td>
+	<td style="text-align: right;border-top: 1px solid #000;">- <%= kroner(@invoice.registration.camp.products.sum(:total_price))- @invoice.if_discount %></td>
 	<td></td>
 	</tr>
 
@@ -71,6 +90,6 @@
 </table>
 </div>
 <div class='last_lines'>
-<p>Beløp - <%= number_to_currency(@invoice.registration.camp.products.sum(:total_price)) %> </p>
+<p>Beløp - <%= kroner_no_unit(@invoice.registration.camp.products.sum(:total_price)- @invoice.if_discount) %> kroner</p>
  </div>
   </div>
