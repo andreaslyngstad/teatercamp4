@@ -5,10 +5,10 @@ class InvoiceMailer < ActionMailer::Base
     @invoice = invoice
     collecter
 
-    sut = render_to_string(show_pdf_url(invoice))
-
-    put = PDFKit.new(sut).to_pdf
-    attachments['faktura.pdf'] = PDFKit.new(sut).to_pdf
+      html = (InvoicesController.render 'show_pdf', assigns: { invoice: @invoice}).to_str
+    
+    put = PDFKit.new(html, title: "faktura").to_pdf
+    attachments['faktura.pdf'] = put
     mail(:to => @registration.billing_email, :subject => "Faktura", :bcc => 'faktura@teatercamp.no')
   end
   def send_reminder(invoice)
