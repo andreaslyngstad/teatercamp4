@@ -59,10 +59,23 @@ jQuery.fn.send_credit_note = function (){
 
 $(document).ready(function() {
 
+//   $(window).scroll(function() {
+//   if ($(this).scrollTop() > 0) {
+//     $('#menu').slideUp();
+//   } else
+//   {
+//     $('#menu').slideDown();
+//   }
+// });
+
+
   $('.scroller').slick({
 
     //
-     dots: true,
+    arrows: false,
+    autoplay: true,
+  autoplaySpeed: 2000,
+     dots: false,
     centerMode: true,
     centerPadding: '40px',
     // focusOnSelect: true
@@ -70,19 +83,19 @@ $(document).ready(function() {
        {
          breakpoint: 10240,
          settings: {
-           slidesToShow: 5,
+           slidesToShow: 3,
            slidesToScroll: 1,
            infinite: true,
-           dots: true
+
          }
        },
        {
          breakpoint:2200,
          settings: {
-           slidesToShow: 4,
+           slidesToShow: 3,
            slidesToScroll: 1,
            infinite: true,
-           dots: true
+
          }
        },
        {
@@ -91,13 +104,13 @@ $(document).ready(function() {
            slidesToShow: 3,
            slidesToScroll: 1,
            infinite: true,
-           dots: true
+
          }
        },
        {
          breakpoint: 1400,
          settings: {
-           slidesToShow: 2,
+           slidesToShow: 3,
            slidesToScroll: 1
          }
        },

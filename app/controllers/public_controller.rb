@@ -13,12 +13,11 @@ class PublicController < ApplicationController
     @page2 = Page.where(name:[ 'B-part']).first
     @page3 = Page.where(name:[ 'C-part']).first
     @people = Person.where(active: true)
-    @option = Option.first
     @camps = Camp.where(:public => true)
+    @post = Post.where(:status => 'Offentlig').last
      if params[:id]
      @camp = Camp.find(params[:id])
      end
-
   end
 
   def start
@@ -94,10 +93,15 @@ class PublicController < ApplicationController
    end
 
   def view_camp
-    @pages = Page.order("lft")
-    @option = Option.first
+    # @option = Option.first
     @camp = Camp.find(params[:id])
+    @people = @camp.people
     # render(:layout => 'camps')
+  end
+
+  def view_person
+    @person = Person.find(params[:id])
+    @people = Person.where(active:true)
   end
 
 end

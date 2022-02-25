@@ -45,7 +45,7 @@
   >
     <a href="<%= root_url %>">TEATER|CAMP</a></li>
 	<li data-menuanchor="kurs"
-    <% if current_page?(controller: 'public', action: 'camps') %>
+    <% if current_page?(controller: 'public', action: 'camps'   )%>
     class="active"
     <% end %>
     >
@@ -57,19 +57,21 @@
   <% end %>
   >
     <a href="<%= view_blogg_path %>">NYHETER</a></li>
-  	<%if logged_in?%>
-	<li><%= link_to "Logg ut","/logout" %></li>
-	<li><%= link_to( "Til CMS", cms_path) %></li>
+    <%if logged_in?%>
+    <%= link_to "Logg ut","/logout" %>
+    <%= link_to( "Til CMS", cms_path) %>
     <%end%>
 </ul>
-<div id='content'>
+
+<!-- <div id='content'> -->
   <%= yield %>
-</div>
+<!-- </div> -->
+
 
 <!-- start footer -->
-<!-- <div id="footer">
-	<div id="footer_wrapper">&#169; Teater|camp - t. 92056833 m. tiril@teatercamp.no</div>
-</div> -->
+<div class="footer">
+	<div id="footer_wrapper">&#169; Teater|camp - t. 92056833 m. info@teatercamp.no</div>
+</div>
 
 </body>
 </html>

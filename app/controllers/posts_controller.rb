@@ -56,17 +56,12 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.xml
   def create
-    @all_categories = get_all_categories
-    checked_categories = get_categories_from(params[:categories])
-    removed_categories = @all_categories - checked_categories
     @user = current_user.id
-    @post = Post.new(product_params)
+    @post = Post.new(post_params)
     @post.author = current_user
 
     respond_to do |format|
       if @post.save
-        checked_categories.each {|cat| @post.categories << cat if !@post.categories.include?(cat)}
-        removed_categories.each {|cat| @post.categories.delete(cat) << cat if @post.categories.include?(cat)}
         flash[:notice] = 'Innlegget ble lagt inn.'
         format.html { redirect_to(@post) }
         format.xml  { render :xml => @post, :status => :created, :location => @post }
@@ -82,15 +77,11 @@ class PostsController < ApplicationController
   # PUT /posts/1
   # PUT /posts/1.xml
   def update
-    @all_categories = get_all_categories
-    checked_categories = get_categories_from(params[:categories])
-    removed_categories = @all_categories - checked_categories
+
     @post = Post.find(params[:id])
 
     respond_to do |format|
-      if @post.update_attributes(product_params)
-        checked_categories.each {|cat| @post.categories << cat if !@post.categories.include?(cat)}
-        removed_categories.each {|cat| @post.categories.delete(cat) << cat if @post.categories.include?(cat)}
+      if @post.update(post_params)
         flash[:notice] = 'Innlegget ble oppdatert.'
         format.html { redirect_to(@post) }
         format.xml  { head :ok }
@@ -130,7 +121,7 @@ class PostsController < ApplicationController
   end
 
   def post_params
-      params.require(:post).permit(:title,:content,:author_id,:status,:created_at,:lead)
+      params.require(:post).permit(:title,:content, :content2, :ingress2, :image ,:author_id,:status,:created_at,:lead)
     end
 
 end

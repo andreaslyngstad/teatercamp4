@@ -1,0 +1,25 @@
+<% @page_title = "Folka"%>
+	<div id='content'>
+<div class="new_camp">
+<div class="new_camp_info">
+  <h1 class="front"><%= @person.name %></h1>
+  	<p><%= image_tag @person.avatar.variant(:medium2) %></p>
+    <div class=bio_on_person_page>
+	<p><%= @person.bio %></p>
+  </div>
+</div>
+
+  <div class="new_camp_text">
+    <h1 class="front">FOLKA VÅRE</h1>
+
+  		    <% @people.each do |person| %>
+    	       <div class="of_person_on_camp">
+
+    			      <p><%= image_tag person.avatar.variant(:medium2) %></p>
+    			      <h2><%= link_to person.name, view_person_path(person) %></h2>
+    			    </div>
+  	  	  <% end %>
+
+    </div>
+</div>
+</div>

@@ -47,7 +47,7 @@ class PagesController < ApplicationController
     respond_to do |format|
       if @page.save
         flash[:notice] = 'Den nye siden ble lagret.'
-        format.html { redirect_to(@page) }
+        format.html { redirect_to(edit_page_path(@page)) }
         format.xml  { render :xml => @page, :status => :created, :location => @page }
       else
         format.html { render :action => "new" }
@@ -64,7 +64,7 @@ class PagesController < ApplicationController
     respond_to do |format|
       if @page.update(page_params)
         flash[:notice] = 'Siden ble oppdatert.'
-        format.html { redirect_to(@page) }
+        format.html { edit_page_path(@page) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

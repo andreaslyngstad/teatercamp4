@@ -97,7 +97,7 @@ class CampsController < ApplicationController
   end
   private
   def camp_params
-    params.require(:camp).permit(:name,:description, :cover_image,
-      :age1,:age2,:begin,:end,:participants,:public,:ingress, :product_ids =>[],:person_ids =>[]  )
+    params.require(:camp).permit(:name,:description, :description2, :ingress, :cover_image,
+      :age1,:age2,:begin,:end,:participants,:public,:ingress2, :product_ids =>[],:person_ids =>[]  )
   end
 end

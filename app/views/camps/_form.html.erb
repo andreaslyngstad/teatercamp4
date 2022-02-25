@@ -6,12 +6,25 @@
 
 <li>
 <%= label_tag 'Ingress' %>
-<%= f.text_area :ingress %>
+<%= f.text_area :ingress, style: "height: 300px;"%>
+
 </li>
 
 <li>
 <%= label_tag 'Beskrivelse' %>
-<%= f.text_area :description %>
+<%= f.text_area :description, style: "height: 300px;"%>
+
+</li>
+<li>
+<%= label_tag 'Ingress2' %>
+<%= f.rich_text_area :ingress2, style: "height: 300px;"%>
+
+</li>
+
+<li>
+<%= label_tag 'Beskrivelse2' %>
+<%= f.rich_text_area :description2, style: "height: 300px;"%>
+
 </li>
 <li>
 <%= label_tag 'Bilde' %>

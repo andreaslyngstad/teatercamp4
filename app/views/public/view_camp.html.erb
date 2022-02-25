@@ -1,14 +1,35 @@
 <% @page_title = @camp.name%>
+<div id='content'>
 <div class="new_camp">
-<div class="new_camp_bk_color">
+<div class="new_camp_info">
+<%= image_tag @camp.cover_image %>
 
-<a href="#kurs"></a>
-	<p> <%= link_to "Tilbake til alle kurs", root_path(anchor: 'kurs')%> </p>
-		<p><b><%= @camp.name%></b></p>
-		<p><b>Alder: <%=h @camp.age1 %> - <%=h @camp.age2 %></b></p>
-		<p><b>Kurset går fra <%=h @camp.begin.strftime('%d.%m.%Y') %> til <%=h @camp.end.strftime('%d.%m.%Y') %></b></p>
-		<p><b>Pris: <%= number_to_currency(@camp.products.sum(:total_price)) %></b></p><br /><br />
-		<%= @camp.description%><br /><br />
-		<%= link_to("Meld deg på", new_registration_path(:id => @camp))%>
+	<p><b>Alder: <%=h @camp.age1 %> - <%=h @camp.age2 %></b></p>
+	<p><b>Kurset går fra <%=h @camp.begin.strftime('%d.%m.%Y') %> til <%=h @camp.end.strftime('%d.%m.%Y') %></b></p>
+	<p><b>Pris: <%= kroner(@camp.products.sum(:total_price)) %></b></p><br /><br />
+	<div class='meld_deg_pa'>
+	<%= link_to("Meld deg på", new_registration_path(:id => @camp))%>
+</div>
+</div>
+
+<div class="new_camp_text">
+	<h1 class="front"><%= @camp.name %></h1>
+	<p>
+		<%= @camp.ingress2 %>
+	</p>
+
+	<p>
+		<%= @camp.description2%>
+	</p>
+	<div>
+		<h1>Folka som jobber på denne kampen</h1>
+		<% 	@people.each do |person| %>
+		<div class="of_person_on_camp">
+		<p><%= image_tag person.avatar.variant(:medium2) %></p>
+		<h2><%= link_to person.name, view_person_path(person) %></h2>
+		</div>
+		<% end %>
+	</div>
+</div>
 </div>
 </div>

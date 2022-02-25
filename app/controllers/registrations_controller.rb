@@ -1,6 +1,6 @@
 class RegistrationsController < ApplicationController
   skip_before_action :login_required?, :only => [ :new, :create, :thank_you]
-
+  layout "public", only: [:new, :create, :thank_you]
   def index
     @camps = Camp.where(:public => true)
     @registrations = Registration.order("created_at ASC").where(:camp_id => @camps)
@@ -26,12 +26,12 @@ class RegistrationsController < ApplicationController
   # GET /registrations/new.xml
   def new
     @camps = Camp.where(:public => true)
-    @pages = Page.order("lft")
-    @option = Option.first
+    # @pages = Page.order("lft")
+    # @option = Option.first
     @registration = Registration.new
     @camp = Camp.find(params[:id])
     @registration.camp =  @camp
-    render :action => "new", :layout => "camps"
+
 
   end
 
@@ -59,7 +59,7 @@ class RegistrationsController < ApplicationController
             @invoice.sent = false
             @invoice.save
             flash[:notice] = 'Påmeldingen er registrert.'
-            render(:controller => "registrations", :action => "thank_you", :layout => "camps" )
+            render(:controller => "registrations", :action => "thank_you", :layout => "public" )
           else
             render :action => "new", :layout => "camps"
           end

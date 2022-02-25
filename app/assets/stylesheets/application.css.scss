@@ -21,6 +21,7 @@
 }
 html,body					{color:#000;
 									font-family: 'AktivGroteskCorp-Regular';
+                  width:100%;
 							}
 .clr							{clear:both;}
 .l								{float:left;}
@@ -33,18 +34,20 @@ a:hover							{color:#aaa;}
 p								{padding:5px 0px 5px 0px;}
 h1, h2{
 	   color: #000;
-     font-size: 150%;
+     // font-size: 150vw;
     // font-style: italic;
 	    font-family: girott,sans-serif;
     // font-variant-ligatures: common-ligatures;
     font-weight: 300;
     letter-spacing: 0;
     line-height: 1.4;
+    margin: 0px;
 
 /*font-family: FranklinGothicFSMedium, Helvetica Neue, Helvetica, Arial, sans serif !important;*/
 }
+h1{padding: 0px;}
 h2{
-	font-size: 120%;
+	// font-size: 120vw;
 
 
 }
@@ -58,11 +61,23 @@ textarea {
     width: 90%;
     height: 200px;
 }
-h1.front{
-	font-size: 60px;
-	// border-bottom: 1px solid #641778;
+.bio_on_person_page{
+  padding-right: 30px;
 }
+.meld_deg_pa{
+  background-color: black;
+  color:white;
+  padding: 5px;
+  width: 300px;
+  text-align: center;
 
+}
+.meld_deg_pa a{
+  color:white;
+}
+.meld_deg_pa a:hover{
+  color:grey;
+}
 .scroller {
   div {
     text-align: center;
@@ -82,17 +97,46 @@ h1.front{
   left: -5px;
 }
 
-#fullpage{
-	/*margin-top: 120px;*/
+ .Hero__contentContainer {
+  width:80%; margin: 0 auto;
+   height: 80%;
+  }
+  .hero_text{
+    display: block;
+	margin-top:200px;
+
+  font-size: 5vw;
+  font-family: girott,sans-serif;
+  color:white;
+  }
+  .hero_text a{
+    color:white;
+  }
+  .page_header{
+
+  }
+  .bac_col{
+    padding-top:  20%;
+    padding-bottom: 20%;
+  background-color: rgba(23, 52, 20, 0.7);
+  }
+
+  .blogg_bk {
+  font-size: 150%;
+  margin: 0 auto;
+  width: 60%;
+  }
+  .camp_list{
+    font-size: 150%;
+
+    width: 100%;
+    margin: 0 auto;
+  }
+#content {
+  width:80%; margin: 0 auto;margin-top:200px;height: 100%;
 }
 
-#content{
-	margin-top:5%;
-	// margin-left: 10%;
-	// margin-right: 10%;
-	// width: 80%;
 
-}
 .center{
 	 font-family: "Open Sans","Helvetica Neue","Helvetica","Arial",sans-serif;
 	float: center;
@@ -103,30 +147,52 @@ h1.front{
 }
 
 
-.left_camps{
-
-	margin: 0 auto;
-	margin-top: 40px;
-	padding: 1%;
-}
-.left_camps ul{
-	list-style: none;
-
+.midt{
+  margin-top: 20px;
+  margin: 0 auto;
+  padding: 10px;
 }
 
-.left_camps ul li{
-  padding-top: 3%;
-
-
+@media screen and (min-width: 1000px) {
+#section5{
+  font-size:70%;
 }
-
-@media screen and (min-width: 700px) {
+  .of_person_on_camp{
+    width: 300px;
+    float: left;
+  }
+  .new_camp{
+    font-size: 150%;
+  	width:100%;
+  	display: inline-block;
+  }
+  .new_camp img {
+  width: 95%;
+  height: auto;
+  /* Magic! */
+  // max-width: 50vw;
+  padding-right: 5%;
+  padding-bottom: 5%;
+}
+  .new_camp_info{
+    width: 50%;
+    float: left;
+  }
+  .new_camp_text{
+    width: 50%;
+    float: left;
+  }
 	#fullpage{font-size: 150%;}
 	#content_index{
-	width: 90%;
-	margin:9% 5% 0 5%;
+	width: 100%;
+	margin:9% 0 0 0;
+    max-width: 1440px;
 
 	}
+  #menu a{
+	    color: #fff;
+			font-size: 20px;
+		}
 	#menu li a{
 	    color: #fff;
 			font-size: 60px;
@@ -137,16 +203,33 @@ h1.front{
 		}
 	.folk{
 		text-align: center;
-	}
-	.person_presenter div{
-		width: 300px;
-		text-align: center;
-	.person_presenter h2{
 
+
+
+	}
+  .folk .front{
+    padding-bottom: 30px;
+  }
+  .folk h2{
+    font-size: 30px;
+  }
+	.person_presenter {
+		width: 24%;
+		text-align: center;
+    float:left;
+    padding-right: 1%;
+
+    display:block;
+	.person_presenter h2 a{
+    font-size: 30px;
 	}
 	}
 	.person_presenter p{
 		padding: 0;
+	}
+  .person_presenter img{
+    width:100%;
+    height: auto;
 	}
 	.tretti_prosent{
 		display: inline-block;
@@ -177,27 +260,30 @@ h1.front{
 
 }
 .camp_list{
-	width: 100%;
-	 display: inline-block;
-	border-bottom: 1px #CCCCCC solid;
-}
+  display: inline-block;
 
+}
+.camp_enty{
+ float: left;
+ width: 100%;
+   display: inline-block;
+
+}
 .camp_holder{
-	display: inline-block;
-	text-align: left;
-	float:left;
-	width: 33%;
+ float: left;
+ width: 33%;
+   display: inline-block;
+
 }
 
 .camp_col_1{
-width: 20%;
 
 }
 .camp_col_2{
-	width: 40%;
+
 }
 .camp_col_3{
-	width: 40%;
+
 }
 
 	.left_camp{
@@ -228,7 +314,7 @@ width: 20%;
 
 }
 	.left_camps{
-		width: 80%;
+		width: 100%;
 		font-size: 150%;
 	}
 .right{
@@ -247,6 +333,16 @@ width: 20%;
 		float:left;
 
 }}
+.trix-content img{
+  float:left;
+  max-height: 400px;
+}
+.trix-content div{
+
+
+}
+
+
 @media screen and (max-height:400px) {
 
 	#fullpage{font-size: 120%;}
@@ -279,10 +375,55 @@ width: 20%;
 
 }
 }
+@media screen and (  max-width: 1300px){
+
+.blogg_bk {
+  font-size: 150%;
+  margin: 0 auto;
+  width: 80%;
+  }
+.left_camps {
+    margin: 0 auto;
+    margin-top: 100px;
+    padding: 1%;
+}
+  .camp_list{
+
+
+  }
+.camp_holder{
+
+  	text-align: left;
+
+
+    margin-bottom: 5px;
+  }
+  .camp_holder h1{
+    font-size:30px;
+  }
+
+  .camp_col_1{
+
+
+
+  }
+  .camp_col_2{
+
+
+  }
+  .camp_col_3{
+
+
+  }
+
+
+}
+
 @media screen and (  max-width: 912px){
 	#content_index{
 	width: 90%;
 	margin:15% 5% 0 5%;
+
 
 	}
 	#menu li a{
@@ -298,7 +439,36 @@ width: 20%;
 
 
 @media screen and (max-width: 700px){
-	#fullpage{font-size: 100%;}
+  .blogg_bk {
+  font-size: 150%;
+  margin: 0 auto;
+  width: 90%;
+  }
+
+  #footer_wrapper{
+
+     font-size: 75%;
+  }
+  .folk{
+		text-align: center;
+
+
+
+	}
+  .folk .front{
+    padding-bottom: 30px;
+  }
+  .folk h2{
+    font-size: 4vw;
+  }
+  .new_camp_text{
+    width: 80%;
+    padding: 10%;
+  }
+.new_camp_info{
+    width: 80%;
+    padding: 10%;
+  }
 	.left{
 
 	padding-top: 2%;
@@ -348,16 +518,14 @@ width: 20%;
 .camps_bk{
 	// background-color: rgba(69, 99, 84, 0.9);
 }
-.blogg_bk{
-	// background-color: rgba(25, 67, 121, 0.9);
-}
+
 
 .oss_bk{
 	// background-color: rgba(25, 67, 121, 0.7);
 }
 .section{
-	padding:5%;
-	width: 90%;
+	padding-top:5%;
+	width: 100%;
 	display: inline-block;
 }
 .section img{
@@ -366,10 +534,10 @@ width: 20%;
 }
 #section1{
 
-	background-color: blue;
+	// background-color: blue;
 }
 #section2{
-		background-color: red;
+		// background-color: red;
     // padding: 0px 50px
 }
 .scroller{
@@ -387,35 +555,23 @@ width: 20%;
 // #section5{
 // 	background: url(asset-path("skog.jpg")) 50% 50% / cover;
 // }
-.new_camp{
-	height: 1000px;
-	width:100%;
-	display: table;
-	background: asset-data-url("new_camp.jpg") 50% 50% / cover;
-	color:#fff;
-}
-
-.new_camp_bk_color{
-	width:100%;
-	height: 1000px;
-	   display: table;
-    background-color: rgba(43, 21, 71, 0.7);
 
 
-}
+
 .thanks{
-	height: 1000px;
+
 	width:100%;
-	display: table;
-	background: asset-data-url("thanks.jpg") 50% 50% / cover;
-	color:#fff;
+   font-size: 30px;
+
+	color:black;
 }
 
 .thanks_bk_color{
 	width:100%;
 	height: 1000px;
 	   display: table;
-    background-color: rgba(23, 52, 20, 0.5);
+     font-size: 30px;
+
 
 
 }
@@ -673,7 +829,7 @@ cursor:pointer;
 
 
 
-#content						{}
+
 #content_wrapper    			{width:1100px; min-height:700px; height: auto !important;height: 100%;margin: 0 auto;padding:10px 0px 30px 0px;}
 #content_wrapper #content_l		{color:#000;width:830px;clear:left;float:left;padding:30px 10px 10px 0px;border-right:1px solid #888;min-height:400px;height:auto!important;height:400px;}
 #content_wrapper #content_l p	{margin-bottom:10px;}
@@ -738,14 +894,15 @@ cursor:pointer;
 
 .post							{padding-bottom:5px;margin-bottom:20px;}
 
+.footer {
+  color:white;
+  background-color: black;
+  height: 50px;
+      font-family: "Girott";
 
-#footer							{}
-#footer_wrapper    				{text-align:center; width:960px;margin:0 auto;font-size:11px;min-height:20px;height:auto!important;height:170px;}
-#footer_wrapper .boks			{width:310px;height:130px;padding:20px 10px 20px 0px;}
+}
 
-#footer	h3						{font-family:georgia;font-size:14px; font-weight: bold;}
-#footer ul						{padding:2px 0px 0px 0px;}
-#footer ul li					{list-style:none;}
-#footer ul li a					{display:block; padding:0px 0px 0px 0px;color:#000;font-weight:bold;}
-#footer ul li a:hover			{color:#999;}
+
+#footer_wrapper    				{text-align:center; margin:0 auto;font-size:40px;font-family: "Girott"; }
+
 @import 'actiontext.css';

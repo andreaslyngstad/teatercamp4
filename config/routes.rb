@@ -37,6 +37,7 @@ Rails.application.routes.draw do
   get "/view_blogg" => 'public#blogg', :as => :view_blogg
   get "/view_camps" => 'public#camps', :as => :view_camps
   get "/view_camp/:id" => 'public#view_camp', :as => :view_camp
+  get "/view_person/:id" => 'public#view_person', :as => :view_person
   get "/view_page" => 'public#index', :as => :view_page
   get "/add_comment/:id" => "public#add_comment", :as => :add_comment
   get "/view_post" => 'public#view_post', :as => :title

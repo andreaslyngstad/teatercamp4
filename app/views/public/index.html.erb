@@ -1,31 +1,62 @@
-<div id="fullpage">
-	<div id="content_index">
-	<div class="section" id="section1" data-anchor="<%= @page1.title %>">
-	 	<%= raw(@page1.body) %>
-	</div>
-	<div class="section folk" id="section2" >
-<h1 class="front">FOLKA VÅRE</h1>
-<div class="scroller_holder">
-	<div class="scroller">
-		<% @people.each do |person| %>
-		<div class="person_presenter">
-			<div>
-			<p><%= image_tag person.avatar.variant(:medium2) %></p>
-			<h2><%= person.name %></h2>
-			</div>
-		</div>
-		<% end %>
-	</div>
 
+<div class="page_header" style="background: url('<%=rails_blob_url( @post.image.variant :original)%>') 50% 50% / cover";>
+	<div class="bac_col">
+	<div class="Hero__contentContainer">
+
+
+	<div class="hero_text">
+		<div class="hero_head">
+		<%= @post.title %>
+		</div>
+		<div class="hero_ingress">
+		<%= @post.ingress2 %>
+		</div>
+		</div>
+	</div>
+</div>
 </div>
 
 
 
+
+	<div id='content'>
+
+		<div class="section" id="section1" data-anchor="<%= @page2.title %>">
+			<%= raw(@page1.body) %>
+		</div>
+
+	<div class="section folk" id="section2" >
+		<h1 class="front">AKTIVITETER</h1>
+<div class="scroller">
+				<% @camps.each do |camp| %>
+				<div class="person_presenter">
+					<%  if camp.cover_image.attached? %>
+					<p><%= image_tag camp.cover_image.variant(:medium2) %></p>
+					<% end %>
+
+					<h2><%= link_to camp.name, view_camp_path(camp) %></h2>
+					</div>
+
+				<% end %>
+	</div>
+	</div>
+
 	<div class="section" id="section3" data-anchor="<%= @page2.title %>">
 		<%= raw(@page2.body) %>
 	</div>
-	<div class="section" id="section4" data-anchor="<%= @page3.title %>">
+	<div class="section folk" id="section4" >
+<h1 class="front">FOLKA VÅRE</h1>
+<div class="scroller">
+		<% @people.each do |person| %>
+		<div class="person_presenter">
+			<p><%= image_tag person.avatar.variant(:medium2) %></p>
+		<h2><%= link_to person.name, view_person_path(person) %></h2>
+		</div>
+		<% end %>
+ </div>
+ </div>
+
+	<div class="section" id="section5" data-anchor="<%= @page3.title %>">
 		<%= raw(@page3.body) %>
-	</div>
 	</div>
 </div>
