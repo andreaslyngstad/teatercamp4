@@ -38,7 +38,14 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   host = 'teatercamp.no' #replace with your own url
   config.action_mailer.default_url_options = { host: host }
-  
+  config.action_mailer.smtp_settings = {
+  :address              => "smtp.gmail.com",
+  :port                 => 587,
+  :user_name            => ENV['user_name'],
+  :password             => ENV['password'],
+  :authentication       => "plain",
+  :enable_starttls_auto => true
+}
 
   # Specifies the header that your server uses for sending files.
   # config.action_dispatch.x_sendfile_header = "X-Sendfile" # for Apache
