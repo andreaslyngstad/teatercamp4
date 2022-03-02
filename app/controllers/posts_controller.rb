@@ -98,7 +98,7 @@ class PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
-
+    flash[:notice] = 'Innlegget ble slettet.'
     respond_to do |format|
       format.html { redirect_to(posts_url) }
       format.xml  { head :ok }
@@ -121,7 +121,7 @@ class PostsController < ApplicationController
   end
 
   def post_params
-      params.require(:post).permit(:title,:content, :content2, :ingress2, :image ,:author_id,:status,:created_at,:lead)
+      params.require(:post).permit(:title,:content, :content2, :ingress2, :image ,:author_id,:status,:created_at,:lead, :front, :color)
     end
 
 end

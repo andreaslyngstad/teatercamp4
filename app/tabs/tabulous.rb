@@ -20,21 +20,6 @@ Tabulous.setup do
       active_when   { in_action('any').of_controller('posts') }
     end
 
-    comments_subtab do
-      text          { 'Kommentarer' }
-      link_path     { comments_path }
-      visible_when  { true }
-      enabled_when  { true }
-      active_when   { in_action('any').of_controller('comments') }
-    end
-
-    categories_subtab do
-      text          { 'Kategorier' }
-      link_path     { categories_path }
-      visible_when  { true }
-      enabled_when  { true }
-      active_when   { in_action('any').of_controller('categories') }
-    end
 
     camps_tab do
       text          { 'Kurs' }

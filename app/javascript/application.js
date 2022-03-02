@@ -11,6 +11,7 @@ import 'jquery-global';
 import "tablesorter";
 import "quicksearch";
 import "slick";
+
 // window.quicksearch = quicksearch;
 
 // window.tablesorter = tablesorter;

@@ -14,7 +14,7 @@ class PublicController < ApplicationController
     @page3 = Page.where(name:[ 'C-part']).first
     @people = Person.where(active: true)
     @camps = Camp.where(:public => true)
-    @post = Post.where(:status => 'Offentlig').last
+    @post = Post.where(status: 'Offentlig', front: true ).last
      if params[:id]
      @camp = Camp.find(params[:id])
      end

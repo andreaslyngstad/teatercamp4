@@ -37,7 +37,7 @@ class InvoicesController < ApplicationController
      respond_to do |format|
        if @invoice.update(invoice_params)
 
-         flash[:notice] = 'Campen ble oppdatert.'
+         flash[:notice] = 'Fakturaen ble oppdatert.'
          format.html { redirect_to(invoice_url(@invoice)) }
          format.xml  { head :ok }
        else

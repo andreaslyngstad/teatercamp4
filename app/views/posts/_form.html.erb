@@ -5,11 +5,15 @@
 
 		<li><label>&nbsp;</label><%= f.submit "Lagre",:class => 'submit' %></li>
         <li><%= f.label :Overskrift %></li>
-		<li><%= f.text_field(:title, :size => 80, :style => "font-size: 1.5em")%></li>
+		<li><%= f.text_field :title%></li>
 			<li><%= label_tag 'Bilde' %>
 		<%= f.file_field :image %></li>
 		<li><%= f.label :Ingress %></li>
-		<li><%= f.text_area(:lead, :cols => 61, :rows => 7, :style => "font-size: 1.5em")%></li>
+		<li><%= f.text_area :lead%></li>
+		<li><%= f.label :front %></li>
+		<li><%= f.check_box :front %></li>
+		<li><%= f.label :farge %></li>
+		<li><%= f.text_field :color%></li>
 		<li><%= f.rich_text_area :ingress2%></li>
         <li><%= f.label :Innhold %></li>
    		<li><%= f.text_area :content%></li>

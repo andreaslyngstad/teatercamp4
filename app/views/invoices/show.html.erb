@@ -55,7 +55,6 @@
 		<% end -%>
 	</table>
 
-	<% if @invoice.number.nil?  %>
 	<ul class="form_layout">
 		<%= form_for @invoice do |f| %>
 		<li>
@@ -68,6 +67,6 @@
 		<%= f.text_field :discount %>
 		</li>
 			<li><label>&nbsp;</label><%= f.submit('Lagre',:class => 'submit') %></li>
-		<% end -%>
+
 		<% end -%>
 		</ul>

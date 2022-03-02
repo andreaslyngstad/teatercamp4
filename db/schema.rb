@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_16_193054) do
+ActiveRecord::Schema.define(version: 2022_03_02_102046) do
 
   create_table "action_mailbox_inbound_emails", force: :cascade do |t|
     t.integer "status", default: 0, null: false
@@ -204,6 +204,8 @@ ActiveRecord::Schema.define(version: 2022_02_16_193054) do
     t.datetime "updated_at"
     t.integer "comments_count", limit: 4, default: 0, null: false
     t.text "lead"
+    t.boolean "front"
+    t.string "color"
   end
 
   create_table "pricings", force: :cascade do |t|
