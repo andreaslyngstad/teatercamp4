@@ -39,12 +39,15 @@ Rails.application.configure do
   host = 'teatercamp.no' #replace with your own url
   config.action_mailer.default_url_options = { host: host }
   config.action_mailer.smtp_settings = {
-  :address              => "smtp.gmail.com",
-  :port                 => 587,
-  :user_name            => ENV['user_name'],
-  :password             => ENV['password'],
-  :authentication       => "plain",
-  :enable_starttls_auto => true
+    address:              'smtp.gmail.com',
+    port:                 587,
+    domain:               'teatercamp.no',
+    user_name:            ENV['USER_NAME'],
+    password:             ENV['PASSWORD'],
+    authentication:       'plain',
+    enable_starttls_auto: true,
+    open_timeout:         5,
+    read_timeout:         5 }
 }
 
   # Specifies the header that your server uses for sending files.
