@@ -25,11 +25,11 @@ Rails.application.configure do
     address:              'smtp.gmail.com',
     port:                 587,
     domain:               'teatercamp.no',
-    user_name:            'info@teatercamp.no',
-    password:             'Axel1Astrid2Alf3August4',
+    user_name:            ENV['USER_NAME'],
+    password:             ENV['PASSWORD'],
     authentication:       'plain',
     enable_starttls_auto: true,
-    open_timeout:         20,
+    open_timeout:         5,
     read_timeout:         5 }
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.
