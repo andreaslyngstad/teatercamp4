@@ -82,7 +82,7 @@
 	<td style="text-align: right;border-top: 1px solid #000;">- <%= kroner(@invoice.registration.camp.total_vat) %></td>
 
 
-	<td style="text-align: right;border-top: 1px solid #000;">- <%= kroner(@invoice.registration.camp.products.sum(:total_price))- @invoice.if_discount %></td>
+	<td style="text-align: right;border-top: 1px solid #000;">- <%= kroner(@invoice.registration.camp.products.sum(:total_price)- @invoice.if_discount) %></td>
 	<td></td>
 	</tr>
 

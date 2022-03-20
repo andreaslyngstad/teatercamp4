@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   before_action :set_all_categories
 
   def index
-    @posts = Post.all
+    @posts = Post.all.order(created_at:"DESC")
     if params[:id].blank?
     @post = Post.last
       if !current_user.nil?

@@ -2,7 +2,7 @@ class InvoicesController < ApplicationController
   layout :resolve_layout
 
   def index
-    @invoices = Invoice.includes(:registration, :credit_note).where('created_at > ?', Time.now.prev_year(2)).order(made_date:"DESC")
+    @invoices = Invoice.includes(:registration, :credit_note).where('created_at > ?', Time.now.prev_year(2)).order(made_date:"ASC")
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @invoices }
@@ -74,7 +74,10 @@ class InvoicesController < ApplicationController
 
   def invoice_send
     @invoice = Invoice.find(params[:id])
-    @invoice.number = ( Invoice.last ? Invoice.last.id  + 1 : 1).to_s + "00" + (Time.now.year).to_s
+    i = Invoice.where.not(number: nil).last
+
+    @invoice.number = ( i.id  + 1).to_s + "00" + (Time.now.year).to_s
+
     if @invoice.made_date.nil?
       @invoice.made_date = Time.now
       @invoice.pay_by = Time.now + 14.days
@@ -119,7 +122,7 @@ class InvoicesController < ApplicationController
     @invoice = Invoice.find(params[:id])
     @credit_note = CreditNote.new
     @credit_note.invoice = @invoice
-    @credit_note.total = -(@invoice.registration.camp.products.sum(:total_price))
+    @credit_note.total = @invoice.discount.to_f - @invoice.total_price
     if @credit_note.save
       respond_to do |wants|
          if InvoiceMailer.send_credit_note(@credit_note).deliver
