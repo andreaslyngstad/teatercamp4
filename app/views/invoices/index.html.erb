@@ -31,10 +31,10 @@
 kreditt
 <% end -%>
 <% else %>
-Ikke sendt
+<span id="ikke_sent_<%= invoice.id %>">Ikke sendt</span>
 <% end -%>
 </td>
-<td><%= invoice.number %></td>
+<td id="number_<%= invoice.id %>"><%= invoice.number %></td>
 <td><%= invoice.registration.name %></td>
 <td><%= invoice.registration.billing_email %></td>
 <td><%= invoice.registration.camp.name %></td>
@@ -57,7 +57,7 @@ Ikke sendt
 			<% end -%>
       <span class="send_link_wr"><a class="send_link_credit" data-object="invoice" data-id="<%= invoice.id.to_s %>">Kreditt</a></span>
     <% else %>
-      
+
 
     <% end -%>
 		<span class="spinning" id="spinning_<%= invoice.id.to_s  %>" style="display:none;"></span>

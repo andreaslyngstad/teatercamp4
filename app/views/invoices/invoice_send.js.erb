@@ -1,2 +1,4 @@
 $('#spinning_' + <%= escape_javascript( @invoice.id.to_s)  %>).removeClass("spinning").addClass("passed");
 $('#send_link_' + <%= escape_javascript( @invoice.id.to_s)  %>).text("Sent nå!")
+$('#ikke_sent_' + <%= escape_javascript( @invoice.id.to_s)  %>).text("Sent nå!")
+$('#number_' + <%= escape_javascript( @invoice.id.to_s)%>).text(<%= escape_javascript( @invoice.number.to_s)  %>)

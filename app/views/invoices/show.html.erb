@@ -58,6 +58,11 @@
 	<ul class="form_layout">
 		<%= form_for @invoice do |f| %>
 		<li>
+		<%= label_tag 'Faktura Number' %>
+		<%= f.text_field :number %>
+		</li>
+
+		<li>
 		<%= label_tag 'Rabatt grunn' %>
 		<%= f.text_field :discount_text %>
 		</li>
