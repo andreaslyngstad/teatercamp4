@@ -9,6 +9,7 @@ import "@rails/actiontext"
 // import * as jQuery from 'jquery';
 import 'jquery-global';
 import "tablesorter";
+import 'cookie_bar'
 import "quicksearch";
 import "slick";
 

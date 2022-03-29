@@ -3,7 +3,7 @@ class CampsController < ApplicationController
   # GET /camps.xml
   layout "application"
     def index
-    @camps = Camp.order("public DESC").includes(:registrations)
+    @camps = Camp.order("public ASC").includes(:registrations)
     if request.get? && !params[:id].blank?
       @camp = Camp.find(params[:id])
       elsif request.get? && params[:id].blank?
@@ -67,6 +67,7 @@ class CampsController < ApplicationController
  def update
    @camp = Camp.find(params[:id])
    @products = Product.all
+   @people = Person.all
     params[:camp][:product_ids] ||= []
 
     respond_to do |format|

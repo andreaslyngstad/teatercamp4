@@ -10,4 +10,5 @@ pin_all_from  "app/javascript/", under: "javascript"
 pin_all_from "app/javascript/controllers", under: "controllers"
 pin 'tablesorter', to: 'https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.3/js/jquery.tablesorter.min.js'
 pin 'slick', to: 'slick.min.js'
+pin 'cookie_bar', to: 'cookie_bar.js'
 pin 'quicksearch', to: 'https://cdnjs.cloudflare.com/ajax/libs/jquery.quicksearch/2.4.0/jquery.quicksearch.min.js'
