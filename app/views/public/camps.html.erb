@@ -21,7 +21,7 @@
 					<% if camp.registrations.count < camp.participants %>
 								<%= link_to("Meld deg på", new_registration_path(:id => camp) )%>
 							<% else %>
-					 				Fult <%= link_to("Sett deg på venteliste", new_registration_path(:id => camp) )%>
+					 				Fullt <%= link_to("Sett deg på venteliste", new_registration_path(:id => camp) )%>
 							<%end%>
 					</div>
 		</div>
