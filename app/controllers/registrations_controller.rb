@@ -59,7 +59,8 @@ class RegistrationsController < ApplicationController
             @invoice.sent = false
             @invoice.save
             flash[:notice] = 'Påmeldingen er registrert.'
-            render(:controller => "registrations", :action => "thank_you", :layout => "public" )
+            redirect_to (thanks_path( @registration.id))
+            # render(:controller => "registrations", :action => "thank_you", :layout => "public" )
           else
             render :action => "new", :layout => "camps"
           end
@@ -106,10 +107,9 @@ class RegistrationsController < ApplicationController
   end
 
   def thank_you
-    @option = Option.first
-    @parents = Page.roots
     @registration = Registration.find(params[:id])
   end
+
   def emails
   @registrations = Registration.all
   @small_mails = Registration.find(:all, :conditions => ["age < ?", "13"]).map{|reg| reg.billing_email}.uniq
