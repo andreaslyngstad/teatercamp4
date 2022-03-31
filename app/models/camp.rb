@@ -1,7 +1,7 @@
 class Camp < ActiveRecord::Base
   has_many :registrations
   # validates :name, :description, :age1, :age2, :begin, :end, presence: true
-  validates_presence_of :name, :description, :age1, :age2, :begin, :end
+  validates_presence_of :name, :age1, :age2, :begin, :end
 
 
   # validates_length_of :ingress, :maximum => 440, :allow_blank => true
