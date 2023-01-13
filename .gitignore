@@ -37,6 +37,7 @@
 config/database.yml
 log/*.log
 config/email.yml
+config/facebookAPI.yml
 tmp/
 .sass-cache/
 vendor/bundle/

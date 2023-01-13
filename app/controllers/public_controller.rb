@@ -95,8 +95,12 @@ class PublicController < ApplicationController
   def view_camp
     # @option = Option.first
     @camp = Camp.find(params[:id])
+    
     @people = @camp.people
     # render(:layout => 'camps')
+    if !@camp.public?
+      render :file => "#{Rails.root}/public/404.html", :status => 404, :layout => false
+    end
   end
 
   def view_person
