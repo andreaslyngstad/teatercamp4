@@ -13,12 +13,12 @@
 	<tr><td></td><td></td></tr>
 	<tr><td></td><td></td></tr>
 	<tr style="font-weight: bold;"><td>Products</td><td>eks mva</td><td>mva</td><td>mva prosent</td><td>total</td></tr>
-	<% @invoice.registration.camp.products.each do |product| %>
-	<tr><td><%= product.description %></td>
-		<td style="text-align: right;"><%= kroner(product.eks_vat) %></td>
-		<td style="text-align: right;"><%= kroner(product.vat_in_currency) %></td>
-		<td style="text-align: right;"><%=  kroner(product.vat) %></td>
-		<td style="text-align: right;"><%= kroner(product.total_price) %></td>
+	<% @invoice.invoice_lines.each do |line| %>
+	<tr><td><%= line.description %></td>
+		<td style="text-align: right;"><%= kroner(line.eks_vat) %></td>
+		<td style="text-align: right;"><%= kroner(line.vat_in_currency) %></td>
+		<td style="text-align: right;"><%= kroner(line.vat) %></td>
+		<td style="text-align: right;"><%= kroner(line.total_price) %></td>
 		</tr>
 	<% end %>
 
@@ -37,11 +37,11 @@
 		</tr>
 	<% end %>
 	<tr><td style="border-top: 1px solid #000;">Total</td>
-	<td style="text-align: right;border-top: 1px solid #000;"><%= kroner(@invoice.registration.camp.total_eks_vat) %></td>
-	<td style="text-align: right;border-top: 1px solid #000;"><%= kroner(@invoice.registration.camp.total_vat) %></td>
+	<td style="text-align: right;border-top: 1px solid #000;"><%= kroner(@invoice.total_eks_vat) %></td>
+	<td style="text-align: right;border-top: 1px solid #000;"><%= kroner(@invoice.total_vat) %></td>
 	<td></td>
 
-	<td style="text-align: right;border-top: 1px solid #000;"><%= kroner(@invoice.registration.camp.products.sum(:total_price)- @invoice.if_discount ) %></td>
+	<td style="text-align: right;border-top: 1px solid #000;"><%= kroner(@invoice.invoice_lines.sum(:total_price)- @invoice.if_discount ) %></td>
 	</tr>
 	<% if !@invoice.credit_note.nil? %>
 	<tr style="color:red;">
@@ -57,10 +57,7 @@
 
 	<ul class="form_layout">
 		<%= form_for @invoice do |f| %>
-		<li>
-		<%= label_tag 'Faktura Number' %>
-		<%= f.text_field :number %>
-		</li>
+		
 
 		<li>
 		<%= label_tag 'Rabatt grunn' %>
@@ -75,3 +72,5 @@
 
 		<% end -%>
 		</ul>
+
+		<%= link_to 'Last ned PDF', show_pdf_path(format: :pdf) %>

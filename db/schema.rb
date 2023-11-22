@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_02_102046) do
+ActiveRecord::Schema.define(version: 2023_11_22_142846) do
 
   create_table "action_mailbox_inbound_emails", force: :cascade do |t|
     t.integer "status", default: 0, null: false
@@ -112,6 +112,16 @@ ActiveRecord::Schema.define(version: 2022_03_02_102046) do
     t.boolean "use"
   end
 
+  create_table "invoice_lines", force: :cascade do |t|
+    t.float "total_price"
+    t.string "description"
+    t.float "vat"
+    t.string "camp_name"
+    t.integer "invoice_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "invoices", force: :cascade do |t|
     t.integer "registration_id"
     t.integer "number"
@@ -124,6 +134,9 @@ ActiveRecord::Schema.define(version: 2022_03_02_102046) do
     t.datetime "reminder_date"
     t.float "discount"
     t.text "discount_text"
+    t.string "name"
+    t.string "billing_email"
+    t.string "camp_name"
   end
 
   create_table "messages", force: :cascade do |t|

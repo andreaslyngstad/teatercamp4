@@ -21,7 +21,7 @@
     <%   def kroner_no_unit(number)
          number_to_currency(number, unit: "", format: "%n %u", precision: 0, delimiter: "")
       end %>
-<h1>Faktura for <%= @invoice.registration.camp.name %></h1>
+<h1>Faktura for <%= @invoice.camp_name %></h1>
 
 
 </div>
@@ -44,26 +44,26 @@
   		<td><%= @invoice.number %></td>
   	</tr>
 
-    <tr style="font-weight: bold;"><td>Beløp: </td><td><%= kroner_no_unit(@invoice.registration.camp.products.sum(:total_price)- @invoice.if_discount) %> kroner</td></tr>
+    <tr style="font-weight: bold;"><td>Beløp: </td><td><%= kroner_no_unit(@invoice.invoice_lines.sum(:total_price)- @invoice.if_discount) %> kroner</td></tr>
   </table>
     </div>
 
 <div class="faktura_text">
 <table class="invoice_show" border="0" cellspacing="10" cellpadding="1" >
-	<tr><td>Deltager</td><td><%= @invoice.registration.name %></td></tr>
-	<tr><td>Faktura epost</td><td><%= @invoice.registration.billing_email %></td></tr>
-	<tr><td>Kurs</td><td><%= @invoice.registration.camp.name %></td></tr>
+	<tr><td>Deltager</td><td><%= @invoice.name %></td></tr>
+	<tr><td>Faktura epost</td><td><%= @invoice.billing_email %></td></tr>
+	<tr><td>Kurs</td><td><%= @invoice.camp_name %></td></tr>
 	<tr><td>Fra <%= @invoice.registration.camp.begin.strftime('%d.%m.%Y')%></td><td>Til <%= @invoice.registration.camp.end.strftime('%d.%m.%Y') %></td></tr>
 </table>
 <table class="invoice_prices" border="0" cellspacing="10" cellpadding="1" >
-  <tr style="font-weight: bold;"><td style=" text-align: left;"><%= @invoice.registration.camp.name %></td></tr>
+  <tr style="font-weight: bold;"><td style=" text-align: left;"><%= @invoice.camp_name %></td></tr>
 	<tr style="font-weight: bold;"><td style=" text-align: left;">Produkter</td>
 		<td style=" text-align: right;" >Pris</td>
 		<td style=" text-align: right;">MVA</td>
 		<td style=" text-align: right;">Pris ink MVA</td>
 		<td style=" text-align: right;">MVA %</td>
 		</tr>
-	<% @invoice.registration.camp.products.each do |product| %>
+	<% @invoice.invoice_lines.each do |product| %>
 	<tr><td><%= product.description %></td>
 		<td style="text-align: right;"><%= kroner(product.eks_vat) %></td>
 		<td style="text-align: right;"><%= kroner(product.vat_in_currency) %></td>
@@ -88,16 +88,16 @@
 		</tr>
 	<% end %>
 	<tr><td style="border-top: 1px solid #000;">Total</td>
-	<td style="text-align: right;border-top: 1px solid #000;"><%= kroner(@invoice.registration.camp.total_eks_vat) %></td>
-	<td style="text-align: right;border-top: 1px solid #000;"><%= kroner(@invoice.registration.camp.total_vat) %></td>
-	<td style="text-align: right;border-top: 1px solid #000;"><%= kroner(@invoice.registration.camp.products.sum(:total_price)- @invoice.if_discount) %></td>
+	<td style="text-align: right;border-top: 1px solid #000;"><%= kroner(@invoice.total_eks_vat) %></td>
+	<td style="text-align: right;border-top: 1px solid #000;"><%= kroner(@invoice.total_vat) %></td>
+	<td style="text-align: right;border-top: 1px solid #000;"><%= kroner(@invoice.invoice_lines.sum(:total_price)- @invoice.if_discount) %></td>
 	<td></td>
 	</tr>
 </table>
 </div>
 <div class='last_lines'>
-<p style="font-weight: bold;">Beløp <%= kroner_no_unit(@invoice.registration.camp.products.sum(:total_price)- @invoice.if_discount) %> kroner til konto <%= @account %>. </p>
-<p style="font-weight: bold;">  Vennligs merk betalingen med fakturanummer: <%= @invoice.number %> </p>
+<p style="font-weight: bold;">Beløp <%= kroner_no_unit(@invoice.invoice_lines.sum(:total_price)- @invoice.if_discount) %> kroner til konto <%= @account %>. </p>
+<p style="font-weight: bold;">Vennligs merk betalingen med fakturanummer: <%= @invoice.number %> </p>
  </div>
   </div>
   </div>

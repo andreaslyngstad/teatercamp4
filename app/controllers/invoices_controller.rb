@@ -81,6 +81,7 @@ class InvoicesController < ApplicationController
       b = a.join.to_i
       @invoice.number = ( b  + 1).to_s + "00" + (Time.now.year).to_s
     end
+    @invoice.add_products_to_lines
     if @invoice.made_date.nil?
       @invoice.made_date = Time.now
       @invoice.pay_by = Time.now + 14.days

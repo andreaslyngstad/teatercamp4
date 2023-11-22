@@ -51,8 +51,7 @@ Rails.application.routes.draw do
   get 'credit_note/:id' => 'invoices#credit_note', :as => :credit_note
   get 'show_credit_note/:id' => 'invoices#show_credit_note', :as => :show_credit_note
   post '/totals' => 'invoices#totals', :as => :totals
-  get '/totals' => 'invoices#totals'# Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  get '/totals' => 'invoices#totals'
   get '/thank_you/:id' => 'registrations#thank_you', as: :thanks
-  # Defines the root path route ("/")
-  # root "articles#index"
+
 end
