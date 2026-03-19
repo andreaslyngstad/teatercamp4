@@ -16,16 +16,18 @@
  <%=  javascript_importmap_tags "application" %>
  <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-16993262544"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KWBNLPPVS5"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
+  gtag('config', 'G-KWBNLPPVS5');
   gtag('config', 'AW-16993262544');
 </script>
 <script>
   document.addEventListener('turbo:load', function() {
+    gtag('config', 'G-KWBNLPPVS5', { page_path: window.location.pathname });
     gtag('config', 'AW-16993262544', { page_path: window.location.pathname });
   });
 </script>
