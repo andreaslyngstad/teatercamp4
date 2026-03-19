@@ -3,7 +3,7 @@ class CampsController < ApplicationController
   # GET /camps.xml
   layout "application"
     def index
-    @camps = Camp.order("public ASC").includes(:registrations)
+    @camps = Camp.order("begin DESC").includes(:registrations)
     if request.get? && !params[:id].blank?
       @camp = Camp.find(params[:id])
       elsif request.get? && params[:id].blank?

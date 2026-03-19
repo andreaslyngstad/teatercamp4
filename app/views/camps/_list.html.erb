@@ -4,6 +4,7 @@
 <table class="tablesorter" cellspacing="0" cellpadding="0">
 	<thead>
 	<tr>
+		<th class="header">ID</th>
 		<th class="header">Navn</th>
 		<th class="header">Offentlig</th>
 		<th class="header">Påmeldinger</th>
@@ -20,8 +21,10 @@
 	<tr id="<%=camp.id %>">
 	<% if params[:id] == camp.id.to_s%>
 	<tr id="<%= params[:id] %>" style="background:#999999">
+	
   		<% end %>
 
+	    <td><%=h camp.id %></td>
 	    <td><%=h camp.name %></td>
 	    <% if camp.public == false %>
 	    	    <td>nei</td>

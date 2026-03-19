@@ -41,6 +41,11 @@
 	<tr>
 		<th>Navn</th>
 		<th>Alder</th>
+		<th>Forelder 1</th>
+		<th>Telefon 1</th>
+		<th>Forelder 2</th>
+		<th>Telefon 2</th>
+		<th>E-post</th>
 
 	</tr>
 	</thead>
@@ -49,17 +54,35 @@
 <tr>
 		<td><%= reg.name %></td>
 		<td><%= reg.age %></td>
+		<td><%= reg.parent_one_name %></td>
+		<td><%= reg.parent_one_phone %></td>
+		<td><%= reg.parent_two_name %></td>
+		<td><%= reg.parent_two_phone %></td>
+		<td><%= reg.billing_email %></td>
 		<td><%= link_to("Vis", registration_path(reg))%>
 			<%= link_to 'slett', reg, :confirm => 'Er du sikker?', :method => :delete %>
 		</td>
-
 	</tr>
-<% end %>
 
+<% end %>
 <tbody>
 </table>
+<p></p>
+<h3>CSV Eksport telefoner</h3>
+<p></p>
+	<%@camp.registrations.each do |reg|%>
+		<%= reg.parent_one_phone %>, <%= reg.parent_two_phone %>, 
+	<% end %>
+<p></p>
+<h3>CSV Eksport e-poster</h3>
+<p></p>
+	<%@camp.registrations.each do |reg|%>
+		<%= reg.billing_email %>,
+	<% end %>
 
+<p></p>
 <h3>Folk </h3>
+
 <table class="tablesorter" cellspacing="0" cellpadding="0">
 	<thead>
 	<tr>
