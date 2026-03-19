@@ -24,6 +24,11 @@
 
   gtag('config', 'AW-16993262544');
 </script>
+<script>
+  document.addEventListener('turbo:load', function() {
+    gtag('config', 'AW-16993262544', { page_path: window.location.pathname });
+  });
+</script>
 
 
  <!-- Meta Pixel Code -->
